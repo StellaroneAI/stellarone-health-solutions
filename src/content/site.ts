@@ -21,11 +21,23 @@ import {
   Workflow,
 } from "lucide-react";
 import type { Feature } from "@/components/site/FeatureGrid";
+import medicalBillingImage from "@/assets/services/medical-billing.jpg";
+import claimsManagementImage from "@/assets/services/claims-management.jpg";
+import arManagementImage from "@/assets/services/ar-management.jpg";
+import denialManagementImage from "@/assets/services/denial-management.jpg";
+import eligibilityBenefitsImage from "@/assets/services/eligibility-benefits.jpg";
+import paymentPostingImage from "@/assets/services/payment-posting.jpg";
+import insuranceFollowUpImage from "@/assets/services/insurance-follow-up.jpg";
+import codingSupportImage from "@/assets/services/coding-support.jpg";
+import revenueCycleReportingImage from "@/assets/services/revenue-cycle-reporting.jpg";
+import arCleanupImage from "@/assets/services/ar-cleanup.jpg";
 
 export const RCM_SERVICES: Feature[] = [
   {
     title: "Medical Billing",
     icon: FileText,
+    image: medicalBillingImage,
+    imageAlt: "Organized medical billing workspace with secure claims workflow",
     description:
       "Charge capture, charge entry and claim creation aligned to payer and specialty requirements.",
     points: ["Charge entry", "Claim scrubbing support", "Clean-claim workflows"],
@@ -33,6 +45,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Claims Management",
     icon: ClipboardList,
+    image: claimsManagementImage,
+    imageAlt: "Healthcare claims moving through a structured review workflow",
     description:
       "Submission, rejection handling and claim status tracking through to adjudication.",
     points: ["Claim submission support", "Clearinghouse rejections", "Status checking"],
@@ -40,6 +54,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "AR Management",
     icon: LineChart,
+    image: arManagementImage,
+    imageAlt: "Prioritized accounts receivable work queues in a healthcare office",
     description:
       "Structured AR work queues prioritized by aging bucket, payer mix and dollar value.",
     points: ["Aging analysis", "Work queue prioritization", "Payer follow-up"],
@@ -47,6 +63,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Denial Management",
     icon: FileSearch,
+    image: denialManagementImage,
+    imageAlt: "Denied claims being categorized and routed for resolution",
     description:
       "Denial identification, categorization, appeal preparation and root-cause feedback loops.",
     points: ["Denial categorization", "Appeals support", "Root-cause analysis"],
@@ -54,6 +72,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Eligibility & Benefits",
     icon: UserCheck,
+    image: eligibilityBenefitsImage,
+    imageAlt: "Healthcare coverage and benefits verification workflow",
     description:
       "Verification of coverage, benefits and authorization requirements ahead of service.",
     points: ["Coverage verification", "Benefit checks", "Authorization tracking"],
@@ -61,6 +81,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Payment Posting",
     icon: CreditCard,
+    image: paymentPostingImage,
+    imageAlt: "Healthcare payment posting and reconciliation workspace",
     description:
       "ERA and manual posting with reconciliation, adjustments and variance identification.",
     points: ["ERA / EOB posting", "Reconciliation", "Underpayment flags"],
@@ -68,6 +90,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Insurance Follow-Up",
     icon: PhoneCall,
+    image: insuranceFollowUpImage,
+    imageAlt: "Organized insurance payer follow-up and communication workflow",
     description:
       "Consistent payer follow-up cadence with documented outcomes and next actions.",
     points: ["Payer calls and portals", "Documented outcomes", "Escalation paths"],
@@ -75,6 +99,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Coding Support",
     icon: Stethoscope,
+    image: codingSupportImage,
+    imageAlt: "Clinical documentation and medical coding review workspace",
     description:
       "Coding support and documentation review coordinated with your clinical and billing teams.",
     points: ["Code review support", "Documentation queries", "Specialty alignment"],
@@ -82,6 +108,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "Revenue Cycle Reporting",
     icon: BarChart3,
+    image: revenueCycleReportingImage,
+    imageAlt: "Executive healthcare revenue cycle reporting workspace",
     description:
       "Operational reporting on AR, denials, collections and work completed, on your cadence.",
     points: ["AR and aging reports", "Denial trend reporting", "Productivity visibility"],
@@ -89,6 +117,8 @@ export const RCM_SERVICES: Feature[] = [
   {
     title: "AR Cleanup",
     icon: RefreshCcw,
+    image: arCleanupImage,
+    imageAlt: "Accounts receivable backlog organized into clear work queues",
     description:
       "Project-based cleanup of aged or backlogged AR, including legacy system balances.",
     points: ["Backlog projects", "Aged AR review", "Legacy balance resolution"],

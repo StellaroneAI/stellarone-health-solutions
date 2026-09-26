@@ -113,32 +113,31 @@ function Home() {
       </Section>
 
       <Section tone="surface" id="rcm">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-          <div>
-            <SectionHeading
-              eyebrow="Revenue Cycle Management"
-              title="Modular or end-to-end RCM support"
-              description="Take a single function or the full cycle. Our team works inside your systems, to your workflows, with documented outcomes."
-            />
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="brand" size="lg">
-                <Link to="/rcm">Explore RCM</Link>
-              </Button>
-              <Button asChild variant="outlineBrand" size="lg">
-                <Link to="/rcm-services">See all services</Link>
-              </Button>
-            </div>
-          </div>
-          <FeatureGrid
-            columns={2}
-            features={RCM_SERVICES.slice(0, 6).map((s) => ({
-              title: s.title,
-              description: s.description,
-              image: s.image,
-              imageAlt: s.imageAlt,
-            }))}
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <SectionHeading
+            eyebrow="Revenue Cycle Management"
+            title="Modular or end-to-end RCM support"
+            description="Take a single function or the full cycle. Our team works inside your systems, to your workflows, with documented outcomes."
           />
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Button asChild variant="brand" size="lg">
+              <Link to="/rcm">Explore RCM</Link>
+            </Button>
+            <Button asChild variant="outlineBrand" size="lg">
+              <Link to="/rcm-services">See all services</Link>
+            </Button>
+          </div>
         </div>
+        <FeatureGrid
+          className="mt-12"
+          columns={3}
+          features={RCM_SERVICES.slice(0, 6).map((s) => ({
+            title: s.title,
+            description: s.description,
+            image: s.image,
+            imageAlt: s.imageAlt,
+          }))}
+        />
       </Section>
 
       <Section tone="navy" id="agentic-ai">

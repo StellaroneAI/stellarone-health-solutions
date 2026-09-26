@@ -16,3 +16,4 @@
 - Static marketing copy/data lives in `src/content/site.ts` so claims and service lists are edited in one place.
 - Every route sets SEO metadata through `pageHead()` in `src/lib/seo.ts` (title, description, canonical, OG/Twitter).
 - Lead capture goes through the `LeadSink` abstraction in `src/lib/leads.ts`; swap the sink to connect a backend, never put secrets in frontend code.
+- Primary site navigation groups RCM, Healthcare Automation and Agentic AI under Solutions; EasyMed remains a separate product, with About and Insights as distinct content routes.

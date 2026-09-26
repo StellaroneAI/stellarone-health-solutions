@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import React, { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -152,7 +152,9 @@ function ContactPage() {
   const [values, setValues] = useState<LeadInput>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const successRef = React.useRef<HTMLDivElement>(null);
   const [formError, setFormError] = useState("");
+  React.useEffect(() => { if (status === "success") successRef.current?.focus(); }, [status]);
 
   const set = (field: keyof LeadInput) => (value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -229,7 +231,7 @@ function ContactPage() {
 
           <Card className="min-w-0">
             {status === "success" ? (
-              <div className="py-8 text-center" role="status">
+              <div ref={successRef} tabIndex={-1} className="py-8 text-center outline-none" role="status">
                 <CheckCircle2 className="mx-auto h-10 w-10 text-teal" aria-hidden="true" />
                 <h2 className="mt-4 text-xl font-semibold text-navy">Thank you — inquiry received</h2>
                 <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">

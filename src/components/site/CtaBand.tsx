@@ -5,8 +5,8 @@ import { Container } from "./primitives";
 export function CtaBand({
   title = "Let's discuss your revenue cycle and automation goals",
   description = "Tell us about your organization and current setup. We'll follow up with a practical, scoped conversation — no obligation.",
-  primaryLabel = "Discuss Your RCM Needs",
-  secondaryLabel = "Talk to Our Healthcare Team",
+  primaryLabel = "Request an RCM Assessment",
+  secondaryLabel = "Talk to StellarOne",
   tone = "navy",
 }: {
   title?: string;

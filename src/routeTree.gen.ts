@@ -10,18 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AgenticAiRouteImport } from './routes/agentic-ai'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EasymedRouteImport } from './routes/easymed'
 import { Route as HealthcareAiRouteImport } from './routes/healthcare-ai'
+import { Route as HealthcareAutomationRouteImport } from './routes/healthcare-automation'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RcmRouteImport } from './routes/rcm'
 import { Route as RcmServicesRouteImport } from './routes/rcm-services'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhyStellaroneRouteImport } from './routes/why-stellarone'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgenticAiRoute = AgenticAiRouteImport.update({
@@ -34,6 +45,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EasymedRoute = EasymedRouteImport.update({
   id: '/easymed',
   path: '/easymed',
@@ -44,9 +60,24 @@ const HealthcareAiRoute = HealthcareAiRouteImport.update({
   path: '/healthcare-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HealthcareAutomationRoute = HealthcareAutomationRouteImport.update({
+  id: '/healthcare-automation',
+  path: '/healthcare-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RcmRoute = RcmRouteImport.update({
@@ -59,6 +90,11 @@ const RcmServicesRoute = RcmServicesRouteImport.update({
   path: '/rcm-services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhyStellaroneRoute = WhyStellaroneRouteImport.update({
   id: '/why-stellarone',
   path: '/why-stellarone',
@@ -67,83 +103,125 @@ const WhyStellaroneRoute = WhyStellaroneRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/agentic-ai': typeof AgenticAiRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
+  '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/agentic-ai': typeof AgenticAiRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
+  '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/agentic-ai': typeof AgenticAiRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
+  '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/agentic-ai'
     | '/contact'
+    | '/cookies'
     | '/easymed'
     | '/healthcare-ai'
+    | '/healthcare-automation'
     | '/industries'
+    | '/insights'
+    | '/privacy'
     | '/rcm'
     | '/rcm-services'
+    | '/terms'
     | '/why-stellarone'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/agentic-ai'
     | '/contact'
+    | '/cookies'
     | '/easymed'
     | '/healthcare-ai'
+    | '/healthcare-automation'
     | '/industries'
+    | '/insights'
+    | '/privacy'
     | '/rcm'
     | '/rcm-services'
+    | '/terms'
     | '/why-stellarone'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/agentic-ai'
     | '/contact'
+    | '/cookies'
     | '/easymed'
     | '/healthcare-ai'
+    | '/healthcare-automation'
     | '/industries'
+    | '/insights'
+    | '/privacy'
     | '/rcm'
     | '/rcm-services'
+    | '/terms'
     | '/why-stellarone'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AgenticAiRoute: typeof AgenticAiRoute
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   EasymedRoute: typeof EasymedRoute
   HealthcareAiRoute: typeof HealthcareAiRoute
+  HealthcareAutomationRoute: typeof HealthcareAutomationRoute
   IndustriesRoute: typeof IndustriesRoute
+  InsightsRoute: typeof InsightsRoute
+  PrivacyRoute: typeof PrivacyRoute
   RcmRoute: typeof RcmRoute
   RcmServicesRoute: typeof RcmServicesRoute
+  TermsRoute: typeof TermsRoute
   WhyStellaroneRoute: typeof WhyStellaroneRoute
 }
 
@@ -154,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agentic-ai': {
@@ -170,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/easymed': {
       id: '/easymed'
       path: '/easymed'
@@ -184,11 +276,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HealthcareAiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/healthcare-automation': {
+      id: '/healthcare-automation'
+      path: '/healthcare-automation'
+      fullPath: '/healthcare-automation'
+      preLoaderRoute: typeof HealthcareAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/industries': {
       id: '/industries'
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rcm': {
@@ -205,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RcmServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/why-stellarone': {
       id: '/why-stellarone'
       path: '/why-stellarone'
@@ -217,13 +337,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AgenticAiRoute: AgenticAiRoute,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   EasymedRoute: EasymedRoute,
   HealthcareAiRoute: HealthcareAiRoute,
+  HealthcareAutomationRoute: HealthcareAutomationRoute,
   IndustriesRoute: IndustriesRoute,
+  InsightsRoute: InsightsRoute,
+  PrivacyRoute: PrivacyRoute,
   RcmRoute: RcmRoute,
   RcmServicesRoute: RcmServicesRoute,
+  TermsRoute: TermsRoute,
   WhyStellaroneRoute: WhyStellaroneRoute,
 }
 export const routeTree = rootRouteImport

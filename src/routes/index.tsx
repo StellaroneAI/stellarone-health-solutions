@@ -1,267 +1,71 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { ArrowRight, Bot, HeartPulse, LineChart, LockKeyhole, Settings2, ShieldCheck, Stethoscope, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
-import { OpsConsole } from "@/components/site/OpsConsole";
 import { FeatureGrid } from "@/components/site/FeatureGrid";
+import { OpsConsole } from "@/components/site/OpsConsole";
 import { PageHero } from "@/components/site/PageHero";
 import { WorkflowDiagram } from "@/components/site/WorkflowDiagram";
-import { Section, SectionHeading } from "@/components/site/primitives";
-import { INDUSTRIES, RCM_SERVICES, MEDICAL_DISCLAIMER } from "@/content/site";
+import { Card, Disclaimer, Section, SectionHeading } from "@/components/site/primitives";
+import { INDUSTRIES, MEDICAL_DISCLAIMER, RCM_SERVICES } from "@/content/site";
 import { pageHead } from "@/lib/seo";
-import { Bot, HeartPulse, LineChart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    pageHead({
-      title: "Healthcare RCM, Agentic AI & Digital Health",
-      description:
-        "StellarOne Health is an operational partner for US healthcare organizations: revenue cycle management, agentic AI for healthcare workflows and the EasyMed digital health platform.",
-      path: "/",
-    }),
+  head: () => pageHead({ title: "Healthcare RCM, Automation & AI", description: "StellarOne Health combines US healthcare expertise, revenue cycle management, automation and Agentic AI to support stronger healthcare operations.", path: "/" }),
   component: Home,
 });
 
 const PILLARS = [
-  {
-    title: "Healthcare Revenue Cycle Management",
-    icon: LineChart,
-    description:
-      "Modular or end-to-end RCM support delivered as an operational extension of your team.",
-    points: ["Billing, AR and denials", "Eligibility and posting", "Reporting and AR cleanup"],
-  },
-  {
-    title: "Agentic AI for Healthcare Operations",
-    icon: Bot,
-    description:
-      "AI agents designed to help execute defined healthcare workflows with people in control.",
-    points: ["Human-in-the-loop", "Auditable steps", "Controlled automation"],
-  },
-  {
-    title: "EasyMed Healthcare Technology",
-    icon: HeartPulse,
-    description:
-      "StellarOne Health's digital healthcare and telehealth platform for mobile-first access.",
-    points: ["Telehealth", "Patient engagement", "Multilingual, voice-enabled"],
-  },
+  { title: "Revenue Cycle Management", icon: LineChart, description: "Modular or end-to-end operational support delivered as an extension of your team." },
+  { title: "Healthcare Automation", icon: Settings2, description: "Practical automation designed around repetitive workflows, exceptions and review points." },
+  { title: "Agentic AI", icon: Bot, description: "Conceptual AI-agent workflows designed with people in control and actions auditable." },
+  { title: "Digital Healthcare", icon: HeartPulse, description: "EasyMed supports mobile-first telehealth, patient engagement and digital workflows." },
 ];
 
-const HOW_WE_WORK = [
-  { label: "Discovery", detail: "We review your specialties, payers, systems and current pain points." },
-  { label: "Scope", detail: "We define modular or end-to-end scope, work volumes and service levels." },
-  { label: "Transition", detail: "Access, documentation and workflow definitions are set up with your team." },
-  { label: "Operate", detail: "Daily queues are worked to agreed cadence with documented outcomes." },
-  { label: "Report", detail: "Operational reporting on AR, denials and completed work." },
-  { label: "Optimize", detail: "Root-cause findings feed workflow changes and automation candidates." },
+const MODEL = [
+  { label: "Assess", detail: "Understand your systems, workflows, volumes and operational priorities." },
+  { label: "Design", detail: "Define service scope, ownership, controls, cadence and escalation paths." },
+  { label: "Implement", detail: "Transition access, documentation and queues with your team." },
+  { label: "Optimize", detail: "Review patterns, improve workflows and identify sensible automation opportunities." },
 ];
 
-const FAQS = [
-  {
-    q: "Can StellarOne work as an operational RCM partner, not just a software vendor?",
-    a: "Yes. Our core offering is operational: our team works your billing, AR, denial and follow-up queues inside your systems, following your workflows and escalation rules.",
-  },
-  {
-    q: "Do we have to outsource our entire revenue cycle?",
-    a: "No. Engagements can be modular — for example AR follow-up or denial management only — or broader end-to-end support across the revenue cycle.",
-  },
-  {
-    q: "Which systems do you work in?",
-    a: "We work inside your existing practice management, EHR and clearinghouse tools. Tell us your current setup on the contact form and we'll confirm fit.",
-  },
-  {
-    q: "What does Agentic AI mean in your context?",
-    a: "AI agents that help execute steps in defined healthcare operational workflows — preparing work, gathering context and drafting next actions — with human review before anything is finalized.",
-  },
-  {
-    q: "What is EasyMed?",
-    a: "EasyMed is StellarOne Health's digital healthcare and telehealth platform, covering telehealth, patient engagement and digital healthcare workflows.",
-  },
-  {
-    q: "How do we start a conversation?",
-    a: "Share your organization type, services of interest and current setup through the contact form. Our healthcare team will follow up to scope a practical next step.",
-  },
+const AGENTS = [
+  { title: "Eligibility Agent", description: "Prepares coverage and benefit findings and highlights exceptions for review." },
+  { title: "Denial Agent", description: "Categorizes denial reasons and prepares resolution context for an operator." },
+  { title: "AR Agent", description: "Organizes follow-up priorities and assembles the context needed for the next action." },
+  { title: "Credentialing Agent", description: "Tracks defined credentialing steps, missing information and follow-up items." },
+  { title: "Reporting Agent", description: "Compiles structured operational information into review-ready summaries." },
 ];
 
 function Home() {
-  return (
-    <>
-      <PageHero
-        eyebrow="US Healthcare Operations & Technology"
-        title={
-          <>
-            An operational partner for US healthcare revenue cycle and workflow automation
-          </>
-        }
-        description="StellarOne Health supports US healthcare organizations with revenue cycle management delivered by our operations team, agentic AI designed for healthcare workflows, and EasyMed, our digital health platform."
-        primaryCta={{ label: "Discuss Your RCM Needs", to: "/contact" }}
-        secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
-        aside={<OpsConsole />}
-      />
+  return <>
+    <PageHero eyebrow="Healthcare Operations & Technology" title="Intelligent Healthcare Operations. Built for Better Outcomes." description="StellarOne Health combines US healthcare expertise, Revenue Cycle Management, automation and Agentic AI to help healthcare organizations improve operational efficiency and build a stronger revenue cycle." primaryCta={{ label: "Request an RCM Assessment", to: "/contact" }} secondaryCta={{ label: "Explore Healthcare AI", to: "/healthcare-ai" }} aside={<OpsConsole />} />
 
-      <Section>
-        <SectionHeading
-          eyebrow="What we do"
-          title="Three connected capabilities for healthcare organizations"
-          description="Operations first, technology alongside it. Each capability can stand alone or work together."
-        />
-        <FeatureGrid className="mt-10" features={PILLARS} />
-      </Section>
+    <section className="border-b border-border bg-background"><div className="mx-auto max-w-7xl px-5 py-5 sm:px-6 lg:px-8"><p className="text-center text-xs font-semibold uppercase tracking-wide text-navy sm:text-sm">Healthcare Expertise <span className="mx-2 text-teal">•</span> RCM Operations <span className="mx-2 text-teal">•</span> Automation <span className="mx-2 text-teal">•</span> AI</p></div></section>
 
-      <Section tone="surface" id="rcm">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <SectionHeading
-            eyebrow="Revenue Cycle Management"
-            title="Modular or end-to-end RCM support"
-            description="Take a single function or the full cycle. Our team works inside your systems, to your workflows, with documented outcomes."
-          />
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="brand" size="lg">
-              <Link to="/rcm">Explore RCM</Link>
-            </Button>
-            <Button asChild variant="outlineBrand" size="lg">
-              <Link to="/rcm-services">See all services</Link>
-            </Button>
-          </div>
-        </div>
-        <FeatureGrid
-          className="mt-12"
-          columns={3}
-          features={RCM_SERVICES.slice(0, 6).map((s) => ({
-            title: s.title,
-            description: s.description,
-            image: s.image,
-            imageAlt: s.imageAlt,
-          }))}
-        />
-      </Section>
+    <Section><SectionHeading eyebrow="Our foundation" title="Healthcare Expertise Meets Intelligent Technology" description="We combine people who understand healthcare operations with disciplined delivery and technology selected for real workflow needs." align="center" /><div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-3"><Card><Stethoscope className="h-6 w-6 text-teal" aria-hidden="true" /><h3 className="mt-4 text-lg font-semibold text-navy">Healthcare context</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">Workflows are considered in the context of providers, payers, systems and patients.</p></Card><Card><Workflow className="h-6 w-6 text-teal" aria-hidden="true" /><h3 className="mt-4 text-lg font-semibold text-navy">Operational delivery</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">Our focus is the daily work, clear ownership and documented next actions.</p></Card><Card><ShieldCheck className="h-6 w-6 text-teal" aria-hidden="true" /><h3 className="mt-4 text-lg font-semibold text-navy">Responsible technology</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">Automation and AI are applied with boundaries, oversight and a defined purpose.</p></Card></div></Section>
 
-      <Section tone="navy" id="agentic-ai">
-        <SectionHeading
-          onNavy
-          eyebrow="Agentic AI"
-          title="AI agents that help execute healthcare workflows"
-          description="Not just answers. Agents prepare work, gather context and draft next actions inside defined workflows — with human review, approvals and audit trails."
-        />
-        <WorkflowDiagram
-          className="mt-10"
-          tone="navy"
-          steps={[
-            { label: "Healthcare Data", detail: "Structured operational data from approved sources." },
-            { label: "AI Orchestration", detail: "Routing to the right agent for the workflow." },
-            { label: "Specialized Agent", detail: "Task-scoped agent prepares the work." },
-            { label: "Workflow Tool", detail: "Actions staged in the operational system." },
-            { label: "Human Review", detail: "An operator approves, edits or rejects." },
-            { label: "Audit / Reporting", detail: "Every step logged and reportable." },
-          ]}
-          caption="Conceptual demonstration of an agentic workflow design."
-        />
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button asChild variant="onNavy" size="lg">
-            <Link to="/agentic-ai">Discuss AI Automation</Link>
-          </Button>
-          <Button asChild variant="outlineOnNavy" size="lg">
-            <Link to="/healthcare-ai">Healthcare AI approach</Link>
-          </Button>
-        </div>
-      </Section>
+    <Section tone="surface"><SectionHeading eyebrow="What we do" title="Four connected capabilities for healthcare organizations" description="RCM comes first. Automation, Agentic AI and EasyMed extend how StellarOne can support your organization." /><FeatureGrid className="mt-10" columns={4} features={PILLARS} /></Section>
 
-      <Section id="easymed">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow="EasyMed"
-              title="StellarOne Health's digital healthcare and telehealth platform"
-              description="EasyMed brings telehealth, patient engagement and AI-assisted interaction into a mobile-first, multilingual experience."
-            />
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="brand" size="lg">
-                <Link to="/easymed">Explore EasyMed</Link>
-              </Button>
-              <Button asChild variant="outlineBrand" size="lg">
-                <Link to="/contact">Talk to Our Team</Link>
-              </Button>
-            </div>
-            <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{MEDICAL_DISCLAIMER}</p>
-          </div>
-          <FeatureGrid
-            columns={2}
-            features={[
-              { title: "Telehealth", description: "Remote consultation workflows built for mobile access." },
-              { title: "Patient engagement", description: "Reminders and structured follow-up communication." },
-              { title: "Multilingual", description: "Designed to support interaction across languages." },
-              { title: "Voice-enabled", description: "Voice-driven navigation for easier access." },
-            ]}
-          />
-        </div>
-      </Section>
+    <Section><div className="mx-auto max-w-3xl text-center"><SectionHeading eyebrow="Revenue Cycle Management" title="Your RCM Team. Extended by StellarOne." description="Choose one function or broader end-to-end support. Our team works inside your systems, to your workflows, with documented outcomes and clear escalation paths." align="center" /><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><Button asChild variant="brand" size="xl"><Link to="/contact">Request an RCM Assessment</Link></Button><Button asChild variant="outlineBrand" size="xl"><Link to="/contact">Discuss an RCM Partnership</Link></Button></div></div><FeatureGrid className="mt-12" columns={3} features={RCM_SERVICES} /></Section>
 
-      <Section tone="surface" id="industries">
-        <SectionHeading
-          eyebrow="Industries"
-          title="Who we serve"
-          description="Healthcare organizations across the US that need dependable operational support."
-        />
-        <FeatureGrid className="mt-10" features={INDUSTRIES} />
-        <div className="mt-8">
-          <Button asChild variant="outlineBrand" size="lg">
-            <Link to="/industries">See industries</Link>
-          </Button>
-        </div>
-      </Section>
+    <Section tone="surface"><SectionHeading eyebrow="RCM engagement model" title="Built Around Your Existing Workflow" description="A clear approach from first assessment through steady-state improvement." align="center" /><WorkflowDiagram className="mt-10" steps={MODEL} /></Section>
 
-      <Section id="why">
-        <SectionHeading
-          eyebrow="Why StellarOne"
-          title="Built to operate, not just to advise"
-          description="We combine healthcare operations delivery with a working understanding of healthcare technology and automation."
-        />
-        <FeatureGrid
-          className="mt-10"
-          features={[
-            { title: "Operational delivery", description: "Our team works your queues daily inside your systems." },
-            { title: "Modular engagement", description: "Start with one function and expand when it makes sense." },
-            { title: "Process transparency", description: "Documented workflows, outcomes and operational reporting." },
-            { title: "Technology alignment", description: "Automation candidates identified from real operational work." },
-          ]}
-          columns={4}
-        />
-        <div className="mt-8">
-          <Button asChild variant="outlineBrand" size="lg">
-            <Link to="/why-stellarone">Why StellarOne</Link>
-          </Button>
-        </div>
-      </Section>
+    <Section><div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center"><div><SectionHeading eyebrow="Healthcare Automation" title="Reduce repetitive work. Preserve human judgment." description="We identify bounded workflows where automation can organize work, move information and surface exceptions—without removing people from decisions that need context."/><Button asChild variant="brand" size="lg" className="mt-6"><Link to="/healthcare-automation">Discuss an Automation Opportunity <ArrowRight aria-hidden="true" /></Link></Button></div><FeatureGrid columns={2} features={[{title:"Workflow mapping",description:"Understand the real process before introducing automation."},{title:"Exception handling",description:"Design for the cases that do not follow the standard path."},{title:"Human review",description:"Keep approvals and judgment at defined decision points."},{title:"Operational visibility",description:"Make status, ownership and next actions easier to review."}]} /></div></Section>
 
-      <Section tone="surface" id="how-we-work">
-        <SectionHeading
-          eyebrow="How we work"
-          title="A clear path from first conversation to steady-state operations"
-        />
-        <WorkflowDiagram className="mt-10" steps={HOW_WE_WORK} />
-      </Section>
+    <Section tone="navy"><SectionHeading onNavy eyebrow="Agentic AI" title="Healthcare Workflows, Redesigned Around Intelligent AI Agents" description="Agentic AI can prepare work, interpret context and coordinate steps within defined boundaries while operators retain review and approval." /><div className="mt-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]"><Card tone="navy"><p className="text-xs font-semibold uppercase tracking-wide text-teal-soft">AI + Human Expertise</p><h3 className="mt-3 text-xl font-semibold text-on-navy">Designed to assist—not replace—healthcare teams</h3><p className="mt-3 text-sm leading-relaxed text-on-navy-muted">Human oversight, access control, approvals and auditability are part of the workflow design.</p><Button asChild variant="onNavy" size="lg" className="mt-6"><Link to="/agentic-ai">Explore Healthcare AI</Link></Button></Card><FeatureGrid tone="navy" columns={3} features={AGENTS} /></div><p className="mt-6 text-xs text-on-navy-muted">Conceptual demonstration. These examples describe potential workflow designs, not confirmed production deployments.</p></Section>
 
-      <Section id="faq">
-        <SectionHeading eyebrow="FAQ" title="Common questions" />
-        <Accordion type="single" collapsible className="mt-8 max-w-3xl">
-          {FAQS.map((f, i) => (
-            <AccordionItem key={f.q} value={`item-${i}`}>
-              <AccordionTrigger className="text-left text-base font-semibold text-navy">
-                {f.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                {f.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </Section>
+    <Section><div className="grid gap-10 lg:grid-cols-2 lg:items-center"><div><SectionHeading eyebrow="Meet EasyMed" title="Digital Healthcare, Designed Around the Patient" description="EasyMed is StellarOne Health’s digital healthcare and telehealth platform, designed around mobile-first access, patient engagement, multilingual experiences and voice-enabled interaction."/><div className="mt-6 flex flex-col gap-3 sm:flex-row"><Button asChild variant="brand" size="lg"><Link to="/easymed">Explore EasyMed</Link></Button><Button asChild variant="outlineBrand" size="lg"><Link to="/contact">Talk to Our Team</Link></Button></div><p className="mt-5 text-xs leading-relaxed text-muted-foreground">{MEDICAL_DISCLAIMER}</p></div><FeatureGrid columns={2} features={[{title:"Telehealth",description:"Remote consultation workflows designed for accessible digital care."},{title:"Patient engagement",description:"Structured reminders and follow-up communication."},{title:"Multilingual experience",description:"Interfaces designed to support interaction across languages."},{title:"Voice-enabled access",description:"Navigation for people who prefer speaking over typing."}]} /></div></Section>
 
-      <CtaBand />
-    </>
-  );
+    <Section tone="surface"><SectionHeading eyebrow="Who we serve" title="Built for organizations across US healthcare" description="Support shaped around the operating model, workflows and growth priorities of each organization."/><FeatureGrid className="mt-10" columns={3} features={INDUSTRIES} /><Button asChild variant="outlineBrand" size="lg" className="mt-8"><Link to="/industries">Explore industries</Link></Button></Section>
+
+    <Section><SectionHeading eyebrow="Why StellarOne" title="Healthcare operations and technology, considered together"/><FeatureGrid className="mt-10" columns={4} features={[{title:"Healthcare Expertise",description:"Operational decisions grounded in how US healthcare workflows function."},{title:"RCM Experience",description:"Support across core revenue cycle functions, from eligibility through reporting."},{title:"Technology",description:"A practical understanding of systems, integrations and workflow constraints."},{title:"Flexible Engagement",description:"Modular services, broader RCM coverage or a focused automation opportunity."}]} /></Section>
+
+    <Section tone="navy"><div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center"><SectionHeading onNavy eyebrow="Security & Trust" title="Built With Healthcare Trust in Mind" description="Healthcare workflows require careful handling, defined access and accountable decisions. Our approach begins with those expectations."/><FeatureGrid tone="navy" columns={2} features={[{title:"Data protection",icon:LockKeyhole,description:"Information access is considered in the context of the people and workflow that need it."},{title:"Role-based access",icon:ShieldCheck,description:"Permissions and responsibilities are designed around defined operational roles."},{title:"Responsible AI",icon:Bot,description:"AI-assisted steps retain boundaries, review points and traceable decisions."},{title:"Compliance-oriented design",icon:Workflow,description:"Requirements are addressed during scoping without making unsupported certification claims."}]} /></div></Section>
+
+    <Section><SectionHeading eyebrow="Insights" title="Practical perspectives for healthcare leaders" description="Explore focused thinking on RCM operations, automation, responsible AI and digital healthcare."/><div className="mt-8 grid gap-5 md:grid-cols-3">{[{title:"Evaluating an RCM partner",to:"/rcm"},{title:"Finding the right automation opportunity",to:"/healthcare-automation"},{title:"Designing human oversight into healthcare AI",to:"/agentic-ai"}].map((item)=><Card key={item.title}><h3 className="text-lg font-semibold text-navy">{item.title}</h3><Link to={item.to} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-teal">Read the perspective <ArrowRight className="h-4 w-4" aria-hidden="true"/></Link></Card>)}</div><Button asChild variant="outlineBrand" size="lg" className="mt-8"><Link to="/insights">View all insights</Link></Button></Section>
+
+    <Section tone="surface"><div className="mx-auto max-w-3xl text-center"><SectionHeading eyebrow="Our perspective" title="Human expertise + healthcare operations + technology + automation + AI" description="We understand healthcare operations. We understand RCM. We understand technology. And we know where automation and AI can actually create value." align="center"/><div className="mt-6"><Disclaimer>Specific scope, technical requirements and operational goals are evaluated with each organization. No performance outcome is guaranteed.</Disclaimer></div></div></Section>
+    <CtaBand title="Start with the healthcare operation that matters most" description="Tell us about your RCM needs or the workflow you want to improve. We’ll begin with a practical, scoped conversation." primaryLabel="Request an RCM Assessment" secondaryLabel="Talk to StellarOne" />
+  </>;
 }

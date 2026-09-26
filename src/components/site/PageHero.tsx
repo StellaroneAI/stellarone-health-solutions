@@ -24,7 +24,7 @@ export function PageHero({
     <section className="relative overflow-hidden bg-navy-deep text-on-navy">
       <div className="absolute inset-0 surface-grid opacity-60" aria-hidden="true" />
       <Container className="relative py-16 sm:py-20 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div className={aside ? "grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "max-w-3xl"}>
           <div>
             <Eyebrow onNavy>{eyebrow}</Eyebrow>
             <h1 className="mt-4 text-3xl font-extrabold leading-[1.1] text-on-navy sm:text-4xl lg:text-5xl xl:text-[3.5rem]">
@@ -48,7 +48,7 @@ export function PageHero({
               </div>
             ) : null}
           </div>
-          {aside ? <div className="min-w-0">{aside}</div> : null}
+          {aside ? <div className="hidden min-w-0 md:block">{aside}</div> : null}
         </div>
       </Container>
     </section>

@@ -3,81 +3,9 @@ import { Container } from "./primitives";
 import { Logo } from "./SiteHeader";
 
 const COLUMNS = [
-  {
-    heading: "Revenue Cycle",
-    links: [
-      { label: "RCM Overview", to: "/rcm" },
-      { label: "RCM Services", to: "/rcm-services" },
-      { label: "Industries", to: "/industries" },
-    ],
-  },
-  {
-    heading: "Technology",
-    links: [
-      { label: "Agentic AI", to: "/agentic-ai" },
-      { label: "Healthcare AI", to: "/healthcare-ai" },
-      { label: "EasyMed", to: "/easymed" },
-    ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "Why StellarOne", to: "/why-stellarone" },
-      { label: "Contact", to: "/contact" },
-    ],
-  },
+  { heading: "Solutions", links: [{ label: "Revenue Cycle Management", to: "/rcm" }, { label: "RCM Services", to: "/rcm-services" }, { label: "Healthcare Automation", to: "/healthcare-automation" }, { label: "Agentic AI", to: "/agentic-ai" }] },
+  { heading: "Product", links: [{ label: "EasyMed", to: "/easymed" }, { label: "Healthcare AI", to: "/healthcare-ai" }] },
+  { heading: "Company", links: [{ label: "Industries", to: "/industries" }, { label: "About", to: "/about" }, { label: "Why StellarOne", to: "/why-stellarone" }, { label: "Insights", to: "/insights" }, { label: "Contact", to: "/contact" }] },
 ] as const;
 
-export function SiteFooter() {
-  return (
-    <footer className="bg-navy-deep text-on-navy">
-      <Container className="py-14 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
-          <div className="max-w-sm">
-            <Logo onNavy />
-            <p className="mt-4 text-sm leading-relaxed text-on-navy-muted">
-              StellarOne Health Technologies Pvt. Ltd. supports US healthcare organizations with
-              revenue cycle operations, healthcare workflow automation and digital health technology.
-            </p>
-            <a
-              href="mailto:Praveen.Jayaraman@stellaronehealth.com"
-              className="mt-3 inline-block break-all text-sm text-on-navy-muted transition-colors hover:text-on-navy"
-            >
-              Praveen.Jayaraman@stellaronehealth.com
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {COLUMNS.map((col) => (
-              <div key={col.heading}>
-                <h3 className="text-sm font-semibold text-on-navy">{col.heading}</h3>
-                <ul className="mt-3 space-y-2">
-                  {col.links.map((link) => (
-                    <li key={link.to}>
-                      <Link
-                        to={link.to}
-                        className="text-sm text-on-navy-muted transition-colors hover:text-on-navy"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 border-t border-on-navy/15 pt-6">
-          <p className="text-xs leading-relaxed text-on-navy-muted">
-            Please do not submit patient medical information or other sensitive health information
-            through this website.
-          </p>
-          <p className="mt-3 text-xs text-on-navy-muted">
-            © {new Date().getFullYear()} StellarOne Health Technologies Pvt. Ltd. All rights reserved.
-          </p>
-        </div>
-      </Container>
-    </footer>
-  );
-}
+export function SiteFooter() { return <footer className="bg-navy-deep text-on-navy"><Container className="py-14 lg:py-16"><div className="grid gap-10 lg:grid-cols-[1.35fr_2fr]"><div className="max-w-sm"><Logo onNavy /><p className="mt-4 text-sm leading-relaxed text-on-navy-muted">Healthcare operations and technology for US healthcare organizations—combining RCM delivery, workflow automation, Agentic AI concepts and digital healthcare.</p><a href="mailto:Praveen.Jayaraman@stellaronehealth.com" className="mt-3 inline-block break-all text-sm text-on-navy-muted hover:text-on-navy">Praveen.Jayaraman@stellaronehealth.com</a></div><div className="grid grid-cols-2 gap-8 sm:grid-cols-3">{COLUMNS.map((column) => <div key={column.heading}><h2 className="text-sm font-semibold text-on-navy">{column.heading}</h2><ul className="mt-3 space-y-2">{column.links.map((link) => <li key={link.to}><Link to={link.to} className="text-sm text-on-navy-muted hover:text-on-navy">{link.label}</Link></li>)}</ul></div>)}</div></div><div className="mt-12 border-t border-on-navy/15 pt-6"><p className="text-xs leading-relaxed text-on-navy-muted">Please do not submit patient medical information or other sensitive health information through this website.</p><div className="mt-3 flex flex-col gap-3 text-xs text-on-navy-muted sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} StellarOne Health Technologies Pvt. Ltd. All rights reserved.</p><div className="flex flex-wrap gap-x-5 gap-y-2"><Link to="/privacy" className="hover:text-on-navy">Privacy</Link><Link to="/terms" className="hover:text-on-navy">Terms</Link><Link to="/cookies" className="hover:text-on-navy">Cookies</Link></div></div></div></Container></footer> }

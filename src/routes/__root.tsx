@@ -81,11 +81,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "StellarOne Health | Healthcare RCM, Agentic AI & EasyMed" },
+      { title: "StellarOne Health | Healthcare RCM, Automation & AI" },
       {
         name: "description",
         content:
-          "StellarOne Health supports US healthcare organizations with revenue cycle management, agentic AI for healthcare operations and the EasyMed digital health platform.",
+          "StellarOne Health combines US healthcare expertise, revenue cycle management, automation and Agentic AI to support stronger healthcare operations.",
       },
       { name: "author", content: "StellarOne Health Technologies Pvt. Ltd." },
       { property: "og:site_name", content: "StellarOne Health" },

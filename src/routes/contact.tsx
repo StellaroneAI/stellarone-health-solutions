@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import React, { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -149,10 +149,13 @@ const selectClass =
   "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50";
 
 function ContactPage() {
+  const [inquiryPath, setInquiryPath] = useState<"rcm" | "ai">("rcm");
   const [values, setValues] = useState<LeadInput>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const successRef = React.useRef<HTMLDivElement>(null);
   const [formError, setFormError] = useState("");
+  React.useEffect(() => { if (status === "success") successRef.current?.focus(); }, [status]);
 
   const set = (field: keyof LeadInput) => (value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -170,7 +173,7 @@ function ContactPage() {
     }
     setFormError("");
     setStatus("loading");
-    const result = await submitLead(values);
+    const result = await submitLead(values, inquiryPath === "rcm" ? "website-rcm-assessment" : "website-automation-opportunity");
     if (result.ok) {
       setStatus("success");
       setValues(EMPTY);
@@ -190,8 +193,8 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Talk to StellarOne"
-        description="Tell us about your organization, current setup and what you're trying to solve. Our healthcare team will follow up to scope a practical next step."
+        title="Start with the conversation you need"
+        description="Choose an RCM assessment or an automation conversation. Our healthcare team will review the context you share and follow up with a practical next step."
       />
 
       <Section>
@@ -229,7 +232,7 @@ function ContactPage() {
 
           <Card className="min-w-0">
             {status === "success" ? (
-              <div className="py-8 text-center" role="status">
+              <div ref={successRef} tabIndex={-1} className="py-8 text-center outline-none" role="status">
                 <CheckCircle2 className="mx-auto h-10 w-10 text-teal" aria-hidden="true" />
                 <h2 className="mt-4 text-xl font-semibold text-navy">Thank you — inquiry received</h2>
                 <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
@@ -247,7 +250,14 @@ function ContactPage() {
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate>
-                <h2 className="text-xl font-semibold text-navy">Business inquiry</h2>
+                <fieldset>
+                  <legend className="text-sm font-semibold text-navy">What would you like to discuss?</legend>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <Button type="button" variant={inquiryPath === "rcm" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "rcm"} onClick={() => { setInquiryPath("rcm"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">{inquiryPath === "rcm" ? <CheckCircle2 aria-hidden="true" /> : null} Need RCM Support?</Button>
+                    <Button type="button" variant={inquiryPath === "ai" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "ai"} onClick={() => { setInquiryPath("ai"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">{inquiryPath === "ai" ? <CheckCircle2 aria-hidden="true" /> : null} Interested in Healthcare AI?</Button>
+                  </div>
+                </fieldset>
+                <h2 className="mt-7 text-xl font-semibold text-navy">{inquiryPath === "rcm" ? "Request an RCM Assessment" : "Discuss an Automation Opportunity"}</h2>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Fields marked * are required.
                 </p>
@@ -335,7 +345,7 @@ function ContactPage() {
                   </Field>
                   <Field
                     id="serviceInterest"
-                    label="Service Interested In"
+                    label={inquiryPath === "rcm" ? "Services Needed" : "Automation / AI Interest"}
                     required
                     error={err("serviceInterest")}
                   >
@@ -347,7 +357,7 @@ function ContactPage() {
                       {...aria("serviceInterest")}
                     >
                       <option value="">Select an option</option>
-                      {SERVICE_OPTIONS.map((o) => (
+                      {SERVICE_OPTIONS.filter((option) => inquiryPath === "rcm" ? !["Agentic AI", "Healthcare Automation", "EasyMed"].includes(option) : ["Agentic AI", "Healthcare Automation", "EasyMed", "Other"].includes(option)).map((o) => (
                         <option key={o} value={o}>
                           {o}
                         </option>
@@ -355,7 +365,7 @@ function ContactPage() {
                     </select>
                   </Field>
 
-                  <Field id="monthlyClaimVolume" label="Monthly Claim Volume">
+                  {inquiryPath === "rcm" ? <Field id="monthlyClaimVolume" label="Approx. Monthly Claim Volume">
                     <select
                       id="monthlyClaimVolume"
                       className={selectClass}
@@ -369,8 +379,8 @@ function ContactPage() {
                         </option>
                       ))}
                     </select>
-                  </Field>
-                  <Field id="currentRCM" label="Current RCM Setup">
+                  </Field> : null}
+                  {inquiryPath === "rcm" ? <Field id="currentRCM" label="Current RCM Setup">
                     <select
                       id="currentRCM"
                       className={selectClass}
@@ -384,11 +394,11 @@ function ContactPage() {
                         </option>
                       ))}
                     </select>
-                  </Field>
+                  </Field> : null}
 
                   <Field
                     id="currentPMS"
-                    label="Current PMS / Billing System"
+                    label={inquiryPath === "rcm" ? "Current PMS / Billing System" : "Current Technology"}
                     error={err("currentPMS")}
                     className="sm:col-span-2"
                   >
@@ -401,7 +411,7 @@ function ContactPage() {
                   </Field>
                   <Field
                     id="challenge"
-                    label="Primary Challenge"
+                    label={inquiryPath === "rcm" ? "Primary Challenge" : "Workflow / Problem"}
                     error={err("challenge")}
                     className="sm:col-span-2"
                   >
@@ -453,7 +463,7 @@ function ContactPage() {
                       Sending…
                     </>
                   ) : (
-                    "Submit inquiry"
+                    inquiryPath === "rcm" ? "Request an RCM Assessment" : "Discuss an Automation Opportunity"
                   )}
                 </Button>
               </form>

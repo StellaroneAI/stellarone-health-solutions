@@ -35,8 +35,8 @@ function RcmPage() {
         eyebrow="Revenue Cycle Management"
         title="An operational RCM partner for US healthcare organizations"
         description="StellarOne works as an extension of your revenue cycle team — not as software you have to run yourself. Our operations staff work your queues inside your systems, to your workflows."
-        primaryCta={{ label: "Discuss Your RCM Needs", to: "/contact" }}
-        secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
+        primaryCta={{ label: "Request an RCM Assessment", to: "/contact" }}
+        secondaryCta={{ label: "Discuss an RCM Partnership", to: "/contact" }}
         aside={
           <Card tone="navy">
             <h2 className="text-lg font-semibold text-on-navy">Two ways to engage</h2>

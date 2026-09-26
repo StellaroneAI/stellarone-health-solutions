@@ -24,8 +24,8 @@ function RcmServicesPage() {
         eyebrow="RCM Services"
         title="Ten revenue cycle services, delivered modularly or together"
         description="Choose the functions you need today. Each service is scoped with defined volumes, cadence and reporting, and can expand into broader end-to-end support."
-        primaryCta={{ label: "Discuss Your RCM Needs", to: "/contact" }}
-        secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
+        primaryCta={{ label: "Request an RCM Assessment", to: "/contact" }}
+        secondaryCta={{ label: "Discuss an RCM Partnership", to: "/contact" }}
       />
 
       <Section>

@@ -21,18 +21,36 @@ export function Logo({ onNavy = false }: { onNavy?: boolean }) {
     <Link
       to="/"
       className={cn(
-        "flex shrink-0 items-center rounded-sm",
+        "flex shrink-0 items-center gap-2.5 rounded-sm",
         onNavy && "bg-on-navy px-2 py-1.5",
       )}
       aria-label="StellarOne Health home"
     >
       <img
         src={stellarOneLogo}
-        alt="StellarOne Health"
+        alt=""
         width={992}
         height={624}
         className="h-11 w-auto sm:h-12"
       />
+      <span className="flex flex-col leading-tight">
+        <span
+          className={cn(
+            "font-display text-base font-bold tracking-tight sm:text-lg",
+            onNavy ? "text-navy" : "text-navy",
+          )}
+        >
+          StellarOne Health
+        </span>
+        <span
+          className={cn(
+            "text-[10px] font-medium uppercase tracking-wide sm:text-[11px]",
+            onNavy ? "text-navy/70" : "text-muted-foreground",
+          )}
+        >
+          Healthcare Operations & Technology
+        </span>
+      </span>
     </Link>
   );
 }

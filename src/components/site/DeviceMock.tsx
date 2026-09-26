@@ -1,9 +1,9 @@
 import { CalendarCheck, MessageSquare, Mic, Video } from "lucide-react";
 
 /** Illustrative product visual. Contains no patient data and no real clinical content. */
-export function DeviceMock() {
+export function DeviceMock({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="mx-auto w-full max-w-[280px]" aria-hidden="true">
+    <div className={compact ? "w-full" : "mx-auto w-full max-w-[280px]"} aria-hidden="true">
       <div className="rounded-[2rem] border border-on-navy/20 bg-navy p-3 shadow-lift">
         <div className="overflow-hidden rounded-[1.5rem] bg-background">
           <div className="flex items-center justify-between bg-surface px-4 py-3">
@@ -42,9 +42,11 @@ export function DeviceMock() {
           </div>
         </div>
       </div>
-      <p className="mt-3 text-center text-[11px] text-on-navy-muted">
-        Illustrative interface. Not actual patient data.
-      </p>
+      {compact ? null : (
+        <p className="mt-3 text-center text-[11px] text-on-navy-muted">
+          Illustrative interface. Not actual patient data.
+        </p>
+      )}
     </div>
   );
 }

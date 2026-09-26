@@ -80,9 +80,10 @@ export function SiteHeader() {
             >
               {item.label}
               {item.tag ? (
-                <span className="rounded-full bg-accent/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wide text-accent">
+                <span className="rounded-full bg-teal-soft px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wide text-navy">
                   {item.tag}
                 </span>
+
               ) : null}
             </Link>
           ))}

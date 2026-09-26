@@ -7,14 +7,15 @@ import { cn } from "@/lib/utils";
 import stellarOneLogo from "@/assets/stellarone-health-logo.png";
 
 export const PRIMARY_NAV = [
-  { label: "RCM", to: "/rcm" },
-  { label: "RCM Services", to: "/rcm-services" },
-  { label: "Agentic AI", to: "/agentic-ai" },
-  { label: "Healthcare AI", to: "/healthcare-ai" },
-  { label: "EasyMed", to: "/easymed" },
-  { label: "Industries", to: "/industries" },
-  { label: "Why StellarOne", to: "/why-stellarone" },
+  { label: "RCM", to: "/rcm", tag: undefined as string | undefined },
+  { label: "RCM Services", to: "/rcm-services", tag: "10" },
+  { label: "Agentic AI", to: "/agentic-ai", tag: "AI" },
+  { label: "Healthcare AI", to: "/healthcare-ai", tag: undefined as string | undefined },
+  { label: "EasyMed", to: "/easymed", tag: "Platform" },
+  { label: "Industries", to: "/industries", tag: undefined as string | undefined },
+  { label: "Why StellarOne", to: "/why-stellarone", tag: undefined as string | undefined },
 ] as const;
+
 
 export function Logo({ onNavy = false }: { onNavy?: boolean }) {
   return (

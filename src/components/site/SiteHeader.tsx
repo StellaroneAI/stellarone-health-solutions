@@ -21,7 +21,7 @@ export function Logo({ onNavy = false }: { onNavy?: boolean }) {
     <Link
       to="/"
       className={cn(
-        "flex shrink-0 items-center rounded-sm",
+        "flex shrink-0 items-center gap-2.5 rounded-sm",
         onNavy && "bg-on-navy px-2 py-1.5",
       )}
       aria-label="StellarOne Health home"

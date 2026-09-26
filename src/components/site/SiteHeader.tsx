@@ -64,18 +64,30 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+        <nav
+          aria-label="Primary"
+          className="hidden items-center gap-1 rounded-xl border border-border/70 bg-secondary/50 p-1 backdrop-blur-sm xl:flex"
+        >
           {PRIMARY_NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-navy"
-              activeProps={{ className: "text-navy bg-secondary" }}
+              className="group flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-foreground/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:text-navy hover:shadow-sm"
+              activeProps={{
+                className:
+                  "border-border bg-background text-navy shadow-sm font-semibold",
+              }}
             >
               {item.label}
+              {item.tag ? (
+                <span className="rounded-full bg-accent/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wide text-accent">
+                  {item.tag}
+                </span>
+              ) : null}
             </Link>
           ))}
         </nav>
+
 
         <div className="hidden items-center gap-2 xl:flex">
           <Button asChild variant="brand" size="lg">

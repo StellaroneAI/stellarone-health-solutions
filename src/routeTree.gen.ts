@@ -10,13 +10,38 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgenticAiRouteImport } from './routes/agentic-ai'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EasymedRouteImport } from './routes/easymed'
+import { Route as HealthcareAiRouteImport } from './routes/healthcare-ai'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as RcmRouteImport } from './routes/rcm'
 import { Route as RcmServicesRouteImport } from './routes/rcm-services'
+import { Route as WhyStellaroneRouteImport } from './routes/why-stellarone'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgenticAiRoute = AgenticAiRouteImport.update({
+  id: '/agentic-ai',
+  path: '/agentic-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EasymedRoute = EasymedRouteImport.update({
+  id: '/easymed',
+  path: '/easymed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthcareAiRoute = HealthcareAiRouteImport.update({
+  id: '/healthcare-ai',
+  path: '/healthcare-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesRoute = IndustriesRouteImport.update({
@@ -34,39 +59,92 @@ const RcmServicesRoute = RcmServicesRouteImport.update({
   path: '/rcm-services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhyStellaroneRoute = WhyStellaroneRouteImport.update({
+  id: '/why-stellarone',
+  path: '/why-stellarone',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
+  '/easymed': typeof EasymedRoute
+  '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
+  '/easymed': typeof EasymedRoute
+  '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
+  '/easymed': typeof EasymedRoute
+  '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
+  '/why-stellarone': typeof WhyStellaroneRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/industries' | '/rcm' | '/rcm-services'
+  fullPaths:
+    | '/'
+    | '/agentic-ai'
+    | '/contact'
+    | '/easymed'
+    | '/healthcare-ai'
+    | '/industries'
+    | '/rcm'
+    | '/rcm-services'
+    | '/why-stellarone'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/industries' | '/rcm' | '/rcm-services'
-  id: '__root__' | '/' | '/industries' | '/rcm' | '/rcm-services'
+  to:
+    | '/'
+    | '/agentic-ai'
+    | '/contact'
+    | '/easymed'
+    | '/healthcare-ai'
+    | '/industries'
+    | '/rcm'
+    | '/rcm-services'
+    | '/why-stellarone'
+  id:
+    | '__root__'
+    | '/'
+    | '/agentic-ai'
+    | '/contact'
+    | '/easymed'
+    | '/healthcare-ai'
+    | '/industries'
+    | '/rcm'
+    | '/rcm-services'
+    | '/why-stellarone'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgenticAiRoute: typeof AgenticAiRoute
+  ContactRoute: typeof ContactRoute
+  EasymedRoute: typeof EasymedRoute
+  HealthcareAiRoute: typeof HealthcareAiRoute
   IndustriesRoute: typeof IndustriesRoute
   RcmRoute: typeof RcmRoute
   RcmServicesRoute: typeof RcmServicesRoute
+  WhyStellaroneRoute: typeof WhyStellaroneRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +154,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agentic-ai': {
+      id: '/agentic-ai'
+      path: '/agentic-ai'
+      fullPath: '/agentic-ai'
+      preLoaderRoute: typeof AgenticAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/easymed': {
+      id: '/easymed'
+      path: '/easymed'
+      fullPath: '/easymed'
+      preLoaderRoute: typeof EasymedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/healthcare-ai': {
+      id: '/healthcare-ai'
+      path: '/healthcare-ai'
+      fullPath: '/healthcare-ai'
+      preLoaderRoute: typeof HealthcareAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries': {
@@ -99,14 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RcmServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/why-stellarone': {
+      id: '/why-stellarone'
+      path: '/why-stellarone'
+      fullPath: '/why-stellarone'
+      preLoaderRoute: typeof WhyStellaroneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgenticAiRoute: AgenticAiRoute,
+  ContactRoute: ContactRoute,
+  EasymedRoute: EasymedRoute,
+  HealthcareAiRoute: HealthcareAiRoute,
   IndustriesRoute: IndustriesRoute,
   RcmRoute: RcmRoute,
   RcmServicesRoute: RcmServicesRoute,
+  WhyStellaroneRoute: WhyStellaroneRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

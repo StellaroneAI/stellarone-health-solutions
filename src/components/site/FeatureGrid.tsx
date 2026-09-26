@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 export type Feature = {
   title: string;
   description: string;
-  icon?: LucideIcon;
-  points?: string[];
+  icon?: LucideIcon | undefined;
+  points?: string[] | undefined;
 };
 
 export function FeatureGrid({

@@ -154,7 +154,8 @@ function Home() {
             features={RCM_SERVICES.slice(0, 6).map((s) => ({
               title: s.title,
               description: s.description,
-              icon: s.icon,
+              image: s.image,
+              imageAlt: s.imageAlt,
             }))}
           />
         </div>

@@ -28,11 +28,29 @@ export function Logo({ onNavy = false }: { onNavy?: boolean }) {
     >
       <img
         src={stellarOneLogo}
-        alt="StellarOne Health"
+        alt=""
         width={992}
         height={624}
         className="h-11 w-auto sm:h-12"
       />
+      <span className="flex flex-col leading-tight">
+        <span
+          className={cn(
+            "font-display text-base font-bold tracking-tight sm:text-lg",
+            onNavy ? "text-navy" : "text-navy",
+          )}
+        >
+          StellarOne Health
+        </span>
+        <span
+          className={cn(
+            "text-[10px] font-medium uppercase tracking-wide sm:text-[11px]",
+            onNavy ? "text-navy/70" : "text-muted-foreground",
+          )}
+        >
+          Healthcare Operations & Technology
+        </span>
+      </span>
     </Link>
   );
 }

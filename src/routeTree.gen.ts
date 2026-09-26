@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as RcmRouteImport } from './routes/rcm'
+import { Route as RcmServicesRouteImport } from './routes/rcm-services'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RcmRoute = RcmRouteImport.update({
+  id: '/rcm',
+  path: '/rcm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RcmServicesRoute = RcmServicesRouteImport.update({
+  id: '/rcm-services',
+  path: '/rcm-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/industries': typeof IndustriesRoute
+  '/rcm': typeof RcmRoute
+  '/rcm-services': typeof RcmServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/industries': typeof IndustriesRoute
+  '/rcm': typeof RcmRoute
+  '/rcm-services': typeof RcmServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/industries': typeof IndustriesRoute
+  '/rcm': typeof RcmRoute
+  '/rcm-services': typeof RcmServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/industries' | '/rcm' | '/rcm-services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/industries' | '/rcm' | '/rcm-services'
+  id: '__root__' | '/' | '/industries' | '/rcm' | '/rcm-services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IndustriesRoute: typeof IndustriesRoute
+  RcmRoute: typeof RcmRoute
+  RcmServicesRoute: typeof RcmServicesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rcm': {
+      id: '/rcm'
+      path: '/rcm'
+      fullPath: '/rcm'
+      preLoaderRoute: typeof RcmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rcm-services': {
+      id: '/rcm-services'
+      path: '/rcm-services'
+      fullPath: '/rcm-services'
+      preLoaderRoute: typeof RcmServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IndustriesRoute: IndustriesRoute,
+  RcmRoute: RcmRoute,
+  RcmServicesRoute: RcmServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

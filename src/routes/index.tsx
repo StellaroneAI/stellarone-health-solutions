@@ -11,7 +11,7 @@ import { OpsConsole } from "@/components/site/OpsConsole";
 import { FeatureGrid } from "@/components/site/FeatureGrid";
 import { PageHero } from "@/components/site/PageHero";
 import { WorkflowDiagram } from "@/components/site/WorkflowDiagram";
-import { Section, SectionHeading, Container } from "@/components/site/primitives";
+import { Section, SectionHeading } from "@/components/site/primitives";
 import { INDUSTRIES, RCM_SERVICES, MEDICAL_DISCLAIMER } from "@/content/site";
 import { pageHead } from "@/lib/seo";
 import { Bot, HeartPulse, LineChart } from "lucide-react";

@@ -11,7 +11,7 @@ import { OpsConsole } from "@/components/site/OpsConsole";
 import { FeatureGrid } from "@/components/site/FeatureGrid";
 import { PageHero } from "@/components/site/PageHero";
 import { WorkflowDiagram } from "@/components/site/WorkflowDiagram";
-import { Section, SectionHeading, Container } from "@/components/site/primitives";
+import { Section, SectionHeading } from "@/components/site/primitives";
 import { INDUSTRIES, RCM_SERVICES, MEDICAL_DISCLAIMER } from "@/content/site";
 import { pageHead } from "@/lib/seo";
 import { Bot, HeartPulse, LineChart } from "lucide-react";
@@ -26,15 +26,6 @@ export const Route = createFileRoute("/")({
     }),
   component: Home,
 });
-
-const CAPABILITIES = [
-  "Medical Billing",
-  "AR & Denial Management",
-  "Eligibility & Benefits",
-  "Payment Posting",
-  "Revenue Cycle Reporting",
-  "Healthcare Workflow Automation",
-];
 
 const PILLARS = [
   {
@@ -111,17 +102,6 @@ function Home() {
         secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
         aside={<OpsConsole />}
       />
-
-      {/* Capability strip */}
-      <div className="border-b border-border bg-surface">
-        <Container className="flex flex-wrap items-center gap-x-6 gap-y-2 py-4">
-          {CAPABILITIES.map((c) => (
-            <span key={c} className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              {c}
-            </span>
-          ))}
-        </Container>
-      </div>
 
       <Section>
         <SectionHeading

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "./primitives";
 import { cn } from "@/lib/utils";
-import stellarOneLogo from "@/assets/stellarone-health-logo.png";
 
 const GROUPS = [
   { label: "Solutions", links: [{ label: "Revenue Cycle Management", to: "/rcm" }, { label: "RCM Services", to: "/rcm-services" }, { label: "Healthcare Automation", to: "/healthcare-automation" }, { label: "Agentic AI", to: "/agentic-ai" }, { label: "Healthcare AI", to: "/healthcare-ai" }] },
@@ -15,7 +14,7 @@ const DIRECT = [{ label: "Industries", to: "/industries" }, { label: "About", to
 
 export function Logo({ onNavy = false }: { onNavy?: boolean }) {
   return <Link to="/" className={cn("flex shrink-0 items-center gap-2 rounded-sm", onNavy && "bg-on-navy px-2 py-1.5")} aria-label="StellarOne Health home">
-    <img src={stellarOneLogo} alt="" width={992} height={624} className="h-10 w-auto sm:h-11" />
+    <img src="/favicon.png" alt="" width={64} height={64} className="h-9 w-9 sm:h-10 sm:w-10" />
     <span className="flex flex-col leading-tight"><span className="font-display text-base font-bold text-navy sm:text-lg">StellarOne Health</span><span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground sm:text-[11px]">Healthcare Operations &amp; Technology</span></span>
   </Link>;
 }

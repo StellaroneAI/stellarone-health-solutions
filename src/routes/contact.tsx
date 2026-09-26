@@ -253,8 +253,8 @@ function ContactPage() {
                 <fieldset>
                   <legend className="text-sm font-semibold text-navy">What would you like to discuss?</legend>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <Button type="button" variant={inquiryPath === "rcm" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "rcm"} onClick={() => { setInquiryPath("rcm"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">Need RCM Support?</Button>
-                    <Button type="button" variant={inquiryPath === "ai" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "ai"} onClick={() => { setInquiryPath("ai"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">Interested in Healthcare AI?</Button>
+                    <Button type="button" variant={inquiryPath === "rcm" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "rcm"} onClick={() => { setInquiryPath("rcm"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">{inquiryPath === "rcm" ? <CheckCircle2 aria-hidden="true" /> : null} Need RCM Support?</Button>
+                    <Button type="button" variant={inquiryPath === "ai" ? "brand" : "outlineBrand"} size="lg" aria-pressed={inquiryPath === "ai"} onClick={() => { setInquiryPath("ai"); set("serviceInterest")(""); }} className="h-auto whitespace-normal py-3">{inquiryPath === "ai" ? <CheckCircle2 aria-hidden="true" /> : null} Interested in Healthcare AI?</Button>
                   </div>
                 </fieldset>
                 <h2 className="mt-7 text-xl font-semibold text-navy">{inquiryPath === "rcm" ? "Request an RCM Assessment" : "Discuss an Automation Opportunity"}</h2>

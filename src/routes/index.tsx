@@ -112,17 +112,6 @@ function Home() {
         aside={<OpsConsole />}
       />
 
-      {/* Capability strip */}
-      <div className="border-b border-border bg-surface">
-        <Container className="flex flex-wrap items-center gap-x-6 gap-y-2 py-4">
-          {CAPABILITIES.map((c) => (
-            <span key={c} className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              {c}
-            </span>
-          ))}
-        </Container>
-      </div>
-
       <Section>
         <SectionHeading
           eyebrow="What we do"

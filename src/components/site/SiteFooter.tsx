@@ -39,6 +39,12 @@ export function SiteFooter() {
               StellarOne Health Technologies Pvt. Ltd. supports US healthcare organizations with
               revenue cycle operations, healthcare workflow automation and digital health technology.
             </p>
+            <a
+              href="mailto:Praveen.Jayaraman@stellaronehealth.com"
+              className="mt-3 inline-block break-all text-sm text-on-navy-muted transition-colors hover:text-on-navy"
+            >
+              Praveen.Jayaraman@stellaronehealth.com
+            </a>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">

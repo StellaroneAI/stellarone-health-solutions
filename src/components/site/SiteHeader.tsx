@@ -111,11 +111,11 @@ export function SiteHeader() {
       {open ? (
         <div id="mobile-nav" className="border-t border-border bg-background xl:hidden">
           <Container className="py-4">
-            <nav aria-label="Mobile" className="flex flex-col">
+            <nav aria-label="Mobile" className="grid gap-2">
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-base font-medium text-foreground/85 hover:bg-secondary"
+                className="rounded-lg border border-border bg-secondary/40 px-4 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-background hover:text-navy"
               >
                 Home
               </Link>
@@ -124,13 +124,21 @@ export function SiteHeader() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium text-foreground/85 hover:bg-secondary"
-                  activeProps={{ className: "text-navy bg-secondary" }}
+                  className="flex items-center justify-between rounded-lg border border-border bg-secondary/40 px-4 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-background hover:text-navy"
+                  activeProps={{
+                    className: "bg-background text-navy shadow-sm font-semibold",
+                  }}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.tag ? (
+                    <span className="rounded-full bg-teal-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy">
+                      {item.tag}
+                    </span>
+                  ) : null}
                 </Link>
               ))}
             </nav>
+
             <Button asChild variant="brand" size="xl" className="mt-4 w-full">
               <Link to="/contact" onClick={() => setOpen(false)}>
                 Talk to StellarOne

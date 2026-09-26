@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
+import { OpsConsole } from "@/components/site/OpsConsole";
 import { FeatureGrid } from "@/components/site/FeatureGrid";
 import { PageHero } from "@/components/site/PageHero";
 import { WorkflowDiagram } from "@/components/site/WorkflowDiagram";
@@ -108,18 +109,7 @@ function Home() {
         description="StellarOne Health supports US healthcare organizations with revenue cycle management delivered by our operations team, agentic AI designed for healthcare workflows, and EasyMed, our digital health platform."
         primaryCta={{ label: "Discuss Your RCM Needs", to: "/contact" }}
         secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
-        aside={
-          <WorkflowDiagram
-            tone="navy"
-            steps={[
-              { label: "Eligibility", detail: "Coverage and benefits verified before service." },
-              { label: "Claim", detail: "Charge entry, scrubbing and submission support." },
-              { label: "Follow-up", detail: "Payer follow-up and claim status tracking." },
-              { label: "Resolution", detail: "Posting, denial work and reporting." },
-            ]}
-            caption="Representative revenue cycle flow."
-          />
-        }
+        aside={<OpsConsole />}
       />
 
       {/* Capability strip */}

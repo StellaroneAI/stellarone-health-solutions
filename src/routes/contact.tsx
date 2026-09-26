@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -210,6 +210,19 @@ function ContactPage() {
                 <li>Approximate monthly claim volume</li>
                 <li>The single biggest operational challenge right now</li>
               </ul>
+            </Card>
+            <Card>
+              <h3 className="text-base font-semibold text-navy">Reach our leadership directly</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Praveen Jayaraman — Founder &amp; Chief Executive Officer
+              </p>
+              <a
+                href="mailto:Praveen.Jayaraman@stellaronehealth.com"
+                className="mt-2 inline-flex items-center gap-2 break-all text-sm font-medium text-navy underline-offset-4 hover:underline"
+              >
+                <Mail className="h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
+                Praveen.Jayaraman@stellaronehealth.com
+              </a>
             </Card>
             <Disclaimer>{FORM_PRIVACY_NOTICE}</Disclaimer>
           </div>

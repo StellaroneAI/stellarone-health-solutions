@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
+import { DesktopMock } from "@/components/site/DesktopMock";
 import { DeviceMock } from "@/components/site/DeviceMock";
 import { FeatureGrid } from "@/components/site/FeatureGrid";
 import { PageHero } from "@/components/site/PageHero";
@@ -36,7 +37,14 @@ function EasyMedPage() {
         description="EasyMed brings telehealth, patient engagement and AI-assisted interaction into one mobile-first experience, designed for multilingual and voice-enabled access."
         primaryCta={{ label: "Explore EasyMed", to: "/contact" }}
         secondaryCta={{ label: "Talk to Our Team", to: "/contact" }}
-        aside={<DeviceMock />}
+        aside={
+          <div className="relative">
+            <DesktopMock />
+            <div className="absolute -bottom-6 -right-2 hidden w-36 sm:block lg:-right-6 lg:w-44">
+              <DeviceMock compact />
+            </div>
+          </div>
+        }
       />
 
       <Section>

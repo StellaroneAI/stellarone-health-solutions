@@ -26,6 +26,20 @@ export function pageHead({
       { name: "twitter:description", content: description },
     ],
     links: [{ rel: "canonical", href: url }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "StellarOne Health Technologies Pvt. Ltd.",
+          url: SITE_URL,
+          email: "Praveen.Jayaraman@stellaronehealth.com",
+          description:
+            "Operational partner for US healthcare organizations: revenue cycle management, agentic AI for healthcare workflows and the EasyMed digital health platform.",
+        }),
+      },
+    ],
   };
 }
 

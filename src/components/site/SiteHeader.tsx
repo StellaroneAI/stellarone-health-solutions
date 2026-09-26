@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "./primitives";
 import { cn } from "@/lib/utils";
+import stellarOneLogo from "@/assets/stellarone-health-logo.png";
 
 export const PRIMARY_NAV = [
   { label: "RCM", to: "/rcm" },
@@ -17,41 +18,21 @@ export const PRIMARY_NAV = [
 
 export function Logo({ onNavy = false }: { onNavy?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2.5" aria-label="StellarOne Health home">
-      <span
-        className={cn(
-          "grid h-9 w-9 place-items-center rounded-md",
-          onNavy ? "bg-on-navy/10" : "bg-navy",
-        )}
-        aria-hidden="true"
-      >
-        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-          <path
-            d="M12 3l2.2 5 5.3.5-4 3.6 1.2 5.3L12 14.7 7.3 17.4l1.2-5.3-4-3.6 5.3-.5L12 3z"
-            className={onNavy ? "text-teal-soft" : "text-on-navy"}
-            stroke="currentColor"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-      <span className="leading-tight">
-        <span
-          className={cn(
-            "block font-display text-base font-extrabold tracking-tight",
-            onNavy ? "text-on-navy" : "text-navy",
-          )}
-        >
-          StellarOne Health
-        </span>
-        <span
-          className={cn(
-            "block text-[11px] tracking-wide",
-            onNavy ? "text-on-navy-muted" : "text-muted-foreground",
-          )}
-        >
-          Healthcare Operations &amp; Technology
-        </span>
-      </span>
+    <Link
+      to="/"
+      className={cn(
+        "flex shrink-0 items-center rounded-sm",
+        onNavy && "bg-on-navy px-2 py-1.5",
+      )}
+      aria-label="StellarOne Health home"
+    >
+      <img
+        src={stellarOneLogo}
+        alt="StellarOne Health"
+        width={992}
+        height={624}
+        className="h-11 w-auto sm:h-12"
+      />
     </Link>
   );
 }

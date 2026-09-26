@@ -6,6 +6,8 @@ export type Feature = {
   description: string;
   icon?: LucideIcon | undefined;
   points?: string[] | undefined;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
 };
 
 export function FeatureGrid({
@@ -34,12 +36,25 @@ export function FeatureGrid({
           <li
             key={f.title}
             className={cn(
-              "min-w-0 rounded-lg border p-6 transition-shadow",
+              "min-w-0 overflow-hidden rounded-lg border transition-shadow",
               onNavy
                 ? "border-on-navy/15 bg-on-navy/5"
                 : "border-border bg-card shadow-card hover:shadow-lift",
             )}
           >
+            {f.image ? (
+              <div className="aspect-[31/21] overflow-hidden border-b border-border bg-surface-2">
+                <img
+                  src={f.image}
+                  alt={f.imageAlt ?? ""}
+                  loading="lazy"
+                  width={992}
+                  height={672}
+                  className="h-full w-full object-cover transition-transform duration-500 motion-safe:hover:scale-[1.025]"
+                />
+              </div>
+            ) : null}
+            <div className="p-6">
             {Icon ? (
               <span
                 className={cn(
@@ -84,6 +99,7 @@ export function FeatureGrid({
                 ))}
               </ul>
             ) : null}
+            </div>
           </li>
         );
       })}

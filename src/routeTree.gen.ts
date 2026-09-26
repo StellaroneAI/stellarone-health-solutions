@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgenticAiRouteImport } from './routes/agentic-ai'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EasymedRouteImport } from './routes/easymed'
 import { Route as HealthcareAiRouteImport } from './routes/healthcare-ai'
 import { Route as IndustriesRouteImport } from './routes/industries'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const AgenticAiRoute = AgenticAiRouteImport.update({
   id: '/agentic-ai',
   path: '/agentic-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EasymedRoute = EasymedRouteImport.update({
@@ -62,6 +68,7 @@ const WhyStellaroneRoute = WhyStellaroneRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agentic-ai': typeof AgenticAiRoute
+  '/contact': typeof ContactRoute
   '/easymed': typeof EasymedRoute
   '/healthcare-ai': typeof HealthcareAiRoute
   '/industries': typeof IndustriesRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agentic-ai'
+    | '/contact'
     | '/easymed'
     | '/healthcare-ai'
     | '/industries'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/agentic-ai'
+    | '/contact'
     | '/easymed'
     | '/healthcare-ai'
     | '/industries'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/agentic-ai'
+    | '/contact'
     | '/easymed'
     | '/healthcare-ai'
     | '/industries'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgenticAiRoute: typeof AgenticAiRoute
+  ContactRoute: typeof ContactRoute
   EasymedRoute: typeof EasymedRoute
   HealthcareAiRoute: typeof HealthcareAiRoute
   IndustriesRoute: typeof IndustriesRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/agentic-ai'
       fullPath: '/agentic-ai'
       preLoaderRoute: typeof AgenticAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/easymed': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgenticAiRoute: AgenticAiRoute,
+  ContactRoute: ContactRoute,
   EasymedRoute: EasymedRoute,
   HealthcareAiRoute: HealthcareAiRoute,
   IndustriesRoute: IndustriesRoute,

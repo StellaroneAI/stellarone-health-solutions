@@ -34,7 +34,7 @@ function AgenticPage() {
         eyebrow="Agentic AI"
         title="AI agents that don't just generate answers — they help execute healthcare workflows"
         description="Agentic AI applies to the operational middle of healthcare: work queues, follow-ups, status checks and exception handling. StellarOne designs these workflows with human review and audit trails at the centre."
-        primaryCta={{ label: "Discuss AI Automation", to: "/contact" }}
+        primaryCta={{ label: "Explore Healthcare AI", to: "/healthcare-ai" }}
         secondaryCta={{ label: "Talk to StellarOne", to: "/contact" }}
         aside={
           <Card tone="navy">
@@ -109,7 +109,7 @@ function AgenticPage() {
       <CtaBand
         title="Explore where automation fits in your operations"
         description="We'll walk through your current workflows and identify where controlled automation is realistic — and where it isn't."
-        primaryLabel="Discuss AI Automation"
+        primaryLabel="Discuss an Automation Opportunity"
         secondaryLabel="Talk to StellarOne"
       />
     </>

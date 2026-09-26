@@ -67,7 +67,7 @@ function HealthcareAiPage() {
         eyebrow="Healthcare AI"
         title="A measured approach to AI in healthcare operations"
         description="Healthcare AI only earns its place when it is governed, auditable and useful to the people doing the work. This is how StellarOne evaluates and introduces it."
-        primaryCta={{ label: "Discuss AI Automation", to: "/contact" }}
+        primaryCta={{ label: "Discuss an Automation Opportunity", to: "/contact" }}
         secondaryCta={{ label: "Talk to StellarOne", to: "/contact" }}
       />
 
@@ -103,7 +103,7 @@ function HealthcareAiPage() {
 
       <CtaBand
         title="Talk through an AI workflow with our team"
-        primaryLabel="Discuss AI Automation"
+        primaryLabel="Discuss an Automation Opportunity"
         secondaryLabel="Talk to StellarOne"
       />
     </>

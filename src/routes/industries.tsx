@@ -24,8 +24,8 @@ function IndustriesPage() {
         eyebrow="Industries"
         title="Healthcare organizations we support"
         description="Our operational model fits organizations that need dependable revenue cycle execution and a practical path toward healthcare workflow automation."
-        primaryCta={{ label: "Discuss Your RCM Needs", to: "/contact" }}
-        secondaryCta={{ label: "Talk to Our Healthcare Team", to: "/contact" }}
+        primaryCta={{ label: "Request an RCM Assessment", to: "/contact" }}
+        secondaryCta={{ label: "Discuss an RCM Partnership", to: "/contact" }}
       />
 
       <Section>

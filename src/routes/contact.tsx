@@ -120,10 +120,10 @@ function Field({
 }: {
   id: string;
   label: string;
-  error?: string;
-  required?: boolean;
+  error?: string | undefined;
+  required?: boolean | undefined;
   children: React.ReactNode;
-  className?: string;
+  className?: string | undefined;
 }) {
   return (
     <div className={cn("min-w-0", className)}>

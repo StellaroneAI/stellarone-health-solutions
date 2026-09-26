@@ -7,14 +7,15 @@ import { cn } from "@/lib/utils";
 import stellarOneLogo from "@/assets/stellarone-health-logo.png";
 
 export const PRIMARY_NAV = [
-  { label: "RCM", to: "/rcm" },
-  { label: "RCM Services", to: "/rcm-services" },
-  { label: "Agentic AI", to: "/agentic-ai" },
-  { label: "Healthcare AI", to: "/healthcare-ai" },
-  { label: "EasyMed", to: "/easymed" },
-  { label: "Industries", to: "/industries" },
-  { label: "Why StellarOne", to: "/why-stellarone" },
+  { label: "RCM", to: "/rcm", tag: undefined as string | undefined },
+  { label: "RCM Services", to: "/rcm-services", tag: "10" },
+  { label: "Agentic AI", to: "/agentic-ai", tag: "AI" },
+  { label: "Healthcare AI", to: "/healthcare-ai", tag: undefined as string | undefined },
+  { label: "EasyMed", to: "/easymed", tag: "Platform" },
+  { label: "Industries", to: "/industries", tag: undefined as string | undefined },
+  { label: "Why StellarOne", to: "/why-stellarone", tag: undefined as string | undefined },
 ] as const;
+
 
 export function Logo({ onNavy = false }: { onNavy?: boolean }) {
   return (
@@ -63,18 +64,31 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+        <nav
+          aria-label="Primary"
+          className="hidden items-center gap-1 rounded-xl border border-border/70 bg-secondary/50 p-1 backdrop-blur-sm xl:flex"
+        >
           {PRIMARY_NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-navy"
-              activeProps={{ className: "text-navy bg-secondary" }}
+              className="group flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-foreground/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:text-navy hover:shadow-sm"
+              activeProps={{
+                className:
+                  "border-border bg-background text-navy shadow-sm font-semibold",
+              }}
             >
               {item.label}
+              {item.tag ? (
+                <span className="rounded-full bg-teal-soft px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wide text-navy">
+                  {item.tag}
+                </span>
+
+              ) : null}
             </Link>
           ))}
         </nav>
+
 
         <div className="hidden items-center gap-2 xl:flex">
           <Button asChild variant="brand" size="lg">
@@ -97,11 +111,11 @@ export function SiteHeader() {
       {open ? (
         <div id="mobile-nav" className="border-t border-border bg-background xl:hidden">
           <Container className="py-4">
-            <nav aria-label="Mobile" className="flex flex-col">
+            <nav aria-label="Mobile" className="grid gap-2">
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-base font-medium text-foreground/85 hover:bg-secondary"
+                className="rounded-lg border border-border bg-secondary/40 px-4 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-background hover:text-navy"
               >
                 Home
               </Link>
@@ -110,13 +124,21 @@ export function SiteHeader() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium text-foreground/85 hover:bg-secondary"
-                  activeProps={{ className: "text-navy bg-secondary" }}
+                  className="flex items-center justify-between rounded-lg border border-border bg-secondary/40 px-4 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-background hover:text-navy"
+                  activeProps={{
+                    className: "bg-background text-navy shadow-sm font-semibold",
+                  }}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.tag ? (
+                    <span className="rounded-full bg-teal-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy">
+                      {item.tag}
+                    </span>
+                  ) : null}
                 </Link>
               ))}
             </nav>
+
             <Button asChild variant="brand" size="xl" className="mt-4 w-full">
               <Link to="/contact" onClick={() => setOpen(false)}>
                 Talk to StellarOne

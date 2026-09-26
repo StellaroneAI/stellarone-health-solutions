@@ -1,10 +1,17 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "./primitives";
 import { cn } from "@/lib/utils";
 import stellarOneLogo from "@/assets/stellarone-health-logo.png";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetHeader,
+} from "@/components/ui/sheet";
 
 export const PRIMARY_NAV = [
   { label: "RCM", to: "/rcm", tag: undefined as string | undefined },
@@ -16,13 +23,12 @@ export const PRIMARY_NAV = [
   { label: "Why StellarOne", to: "/why-stellarone", tag: undefined as string | undefined },
 ] as const;
 
-
 export function Logo({ onNavy = false }: { onNavy?: boolean }) {
   return (
     <Link
       to="/"
       className={cn(
-        "flex shrink-0 items-center gap-2.5 rounded-sm",
+        "flex shrink-0 items-center gap-2.5 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2",
         onNavy && "bg-on-navy px-2 py-1.5",
       )}
       aria-label="StellarOne Health home"
@@ -72,7 +78,7 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="group flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-foreground/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:text-navy hover:shadow-sm"
+              className="group flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-foreground/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-background hover:text-navy hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
               activeProps={{
                 className:
                   "border-border bg-background text-navy shadow-sm font-semibold",
@@ -83,12 +89,10 @@ export function SiteHeader() {
                 <span className="rounded-full bg-teal-soft px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wide text-navy">
                   {item.tag}
                 </span>
-
               ) : null}
             </Link>
           ))}
         </nav>
-
 
         <div className="hidden items-center gap-2 xl:flex">
           <Button asChild variant="brand" size="lg">
@@ -96,22 +100,23 @@ export function SiteHeader() {
           </Button>
         </div>
 
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-border text-navy xl:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </Container>
-
-      {open ? (
-        <div id="mobile-nav" className="border-t border-border bg-background xl:hidden">
-          <Container className="py-4">
-            <nav aria-label="Mobile" className="grid gap-2">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-border text-navy outline-none focus-visible:ring-2 focus-visible:ring-teal xl:hidden"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:max-w-xs">
+            <SheetHeader className="text-left">
+              <SheetTitle>
+                <Logo />
+              </SheetTitle>
+            </SheetHeader>
+            <nav aria-label="Mobile" className="mt-8 grid gap-2">
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
@@ -137,16 +142,15 @@ export function SiteHeader() {
                   ) : null}
                 </Link>
               ))}
+              <Button asChild variant="brand" size="xl" className="mt-4 w-full">
+                <Link to="/contact" onClick={() => setOpen(false)}>
+                  Talk to StellarOne
+                </Link>
+              </Button>
             </nav>
-
-            <Button asChild variant="brand" size="xl" className="mt-4 w-full">
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                Talk to StellarOne
-              </Link>
-            </Button>
-          </Container>
-        </div>
-      ) : null}
+          </SheetContent>
+        </Sheet>
+      </Container>
     </header>
   );
 }

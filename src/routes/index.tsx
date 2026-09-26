@@ -27,15 +27,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const CAPABILITIES = [
-  "Medical Billing",
-  "AR & Denial Management",
-  "Eligibility & Benefits",
-  "Payment Posting",
-  "Revenue Cycle Reporting",
-  "Healthcare Workflow Automation",
-];
-
 const PILLARS = [
   {
     title: "Healthcare Revenue Cycle Management",

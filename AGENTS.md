@@ -15,5 +15,6 @@
 - Shared page building blocks live in `src/components/site/` (primitives, header, footer, hero, CTA band, feature grid, workflow diagram) — reuse them instead of bespoke section markup.
 - Static marketing copy/data lives in `src/content/site.ts` so claims and service lists are edited in one place.
 - Every route sets SEO metadata through `pageHead()` in `src/lib/seo.ts` (title, description, canonical, OG/Twitter).
-- Lead capture goes through the `LeadSink` abstraction in `src/lib/leads.ts`; swap the sink to connect a backend, never put secrets in frontend code.
+- Lead capture goes through the `LeadSink` abstraction in `src/lib/leads.ts`; the active sink stores enquiries in Lovable Cloud via server functions in `src/lib/enquiries.functions.ts` (tables are service-role only), never secrets in frontend code.
+- The enquiry chat assistant streams from `src/routes/api/chat.ts`; its knowledge prompt is built from `src/content/site.ts` so it never drifts from site claims.
 - Primary site navigation groups RCM, Healthcare Automation and Agentic AI under Solutions; EasyMed remains a separate product, with About and Insights as distinct content routes.

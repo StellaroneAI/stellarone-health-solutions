@@ -24,6 +24,7 @@ import { Route as RcmRouteImport } from './routes/rcm'
 import { Route as RcmServicesRouteImport } from './routes/rcm-services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhyStellaroneRouteImport } from './routes/why-stellarone'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +101,11 @@ const WhyStellaroneRoute = WhyStellaroneRouteImport.update({
   path: '/why-stellarone',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/rcm-services'
     | '/terms'
     | '/why-stellarone'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/rcm-services'
     | '/terms'
     | '/why-stellarone'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/rcm-services'
     | '/terms'
     | '/why-stellarone'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   RcmServicesRoute: typeof RcmServicesRoute
   TermsRoute: typeof TermsRoute
   WhyStellaroneRoute: typeof WhyStellaroneRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhyStellaroneRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   RcmServicesRoute: RcmServicesRoute,
   TermsRoute: TermsRoute,
   WhyStellaroneRoute: WhyStellaroneRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,11 +1,13 @@
 /**
  * Backend-ready lead abstraction.
  *
- * Today submissions are handled by the local adapter below. To connect Supabase,
+ * Submissions are stored in Lovable Cloud through the server sink below. To connect Supabase,
  * a CRM or an email service later, implement a new `LeadSink` and set it as the
  * active sink in `submitLead` — no form code changes required. Never place API
  * keys or secrets in this file; those belong on the server.
  */
+
+import { submitContact } from "./enquiries.functions";
 
 export type Lead = {
   firstName: string;
@@ -48,7 +50,17 @@ const localSink: LeadSink = {
   },
 };
 
-let activeSink: LeadSink = localSink;
+/** Saves the inquiry securely in Lovable Cloud via a server function. */
+const serverSink: LeadSink = {
+  name: "server",
+  async send(lead) {
+    const { createdAt: _createdAt, ...rest } = lead;
+    await submitContact({ data: rest });
+  },
+};
+void localSink;
+
+let activeSink: LeadSink = serverSink;
 
 export function setLeadSink(sink: LeadSink) {
   activeSink = sink;

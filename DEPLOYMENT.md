@@ -46,3 +46,10 @@ average allowed claim value × visitor's assumed recoverable share / 100.
 No default claim value, recovery percentage, specialty multiplier, guarantee,
 or recovery timeframe is inferred. Contact receives the scenario as editable
 enquiry context only after the visitor chooses to share it.
+## Vercel with a direct OpenAI key
+
+Set `OPENAI_API_KEY` (server-only, never `VITE_*`) in Vercel → Settings → Environment
+Variables, optionally `OPENAI_MODEL` (default `gpt-4.1-mini`), then redeploy. When
+`OPENAI_API_KEY` is present the chat calls OpenAI directly; otherwise it uses the
+Lovable AI Gateway. Saving chat enquiries and emailing them still needs Lovable Cloud
+server configuration, which Vercel does not have.

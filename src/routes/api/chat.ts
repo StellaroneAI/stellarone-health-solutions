@@ -9,7 +9,9 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const apiKey = process.env["LOVABLE_API_KEY"];
+        // Direct OpenAI key (e.g. Vercel) takes precedence; otherwise use Lovable AI Gateway.
+        const openaiKey = process.env["OPENAI_API_KEY"];
+        const apiKey = openaiKey ?? process.env["LOVABLE_API_KEY"];
         if (!apiKey) return Response.json({ error: "Assistant is not configured on this deployment. Please contact StellarOne directly while the site owner restores chat access." }, { status: 503 });
 
         let messages: UIMessage[];
@@ -30,7 +32,7 @@ export const Route = createFileRoute("/api/chat")({
         const { ASSISTANT_INSTRUCTIONS } = await import("@/server/ai/assistant-prompt");
         const { getAiAccessPause } = await import("@/server/ai/access-state");
         try {
-          const pause = await getAiAccessPause();
+          const pause = process.env["SUPABASE_SERVICE_ROLE_KEY"] ? await getAiAccessPause() : null;
           if (pause) return Response.json({ error: pause.message }, { status: pause.status });
         } catch {
           return Response.json({ error: "Unable to check assistant availability. Please send your enquiry to our team." }, { status: 503 });
@@ -38,7 +40,9 @@ export const Route = createFileRoute("/api/chat")({
         const modelMessages = await convertToModelMessages(messages);
         return createResponsesCall(
           request,
-          { baseURL: "https://ai.gateway.lovable.dev/v1", apiKey, model: "openai/gpt-6-astra" },
+          openaiKey
+            ? { baseURL: "https://api.openai.com/v1", apiKey, model: process.env["OPENAI_MODEL"] ?? "gpt-4.1-mini", direct: true, reasoning: false }
+            : { baseURL: "https://ai.gateway.lovable.dev/v1", apiKey, model: "openai/gpt-6-astra" },
           modelMessages,
           ASSISTANT_INSTRUCTIONS,
         ).response();

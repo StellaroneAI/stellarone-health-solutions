@@ -25,6 +25,8 @@ import { Route as RcmServicesRouteImport } from './routes/rcm-services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhyStellaroneRouteImport } from './routes/why-stellarone'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
@@ -107,6 +109,16 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
+} as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -124,13 +136,15 @@ export interface FileRoutesByFullPath {
   '/healthcare-ai': typeof HealthcareAiRoute
   '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
   '/api/chat': typeof ApiChatRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/insights/': typeof InsightsIndexRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
@@ -143,13 +157,14 @@ export interface FileRoutesByTo {
   '/healthcare-ai': typeof HealthcareAiRoute
   '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
   '/api/chat': typeof ApiChatRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/insights': typeof InsightsIndexRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
@@ -163,13 +178,15 @@ export interface FileRoutesById {
   '/healthcare-ai': typeof HealthcareAiRoute
   '/healthcare-automation': typeof HealthcareAutomationRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/rcm': typeof RcmRoute
   '/rcm-services': typeof RcmServicesRoute
   '/terms': typeof TermsRoute
   '/why-stellarone': typeof WhyStellaroneRoute
   '/api/chat': typeof ApiChatRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/insights/': typeof InsightsIndexRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -191,6 +208,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/why-stellarone'
     | '/api/chat'
+    | '/insights/$slug'
+    | '/insights/'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -203,13 +222,14 @@ export interface FileRouteTypes {
     | '/healthcare-ai'
     | '/healthcare-automation'
     | '/industries'
-    | '/insights'
     | '/privacy'
     | '/rcm'
     | '/rcm-services'
     | '/terms'
     | '/why-stellarone'
     | '/api/chat'
+    | '/insights/$slug'
+    | '/insights'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
@@ -229,6 +249,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/why-stellarone'
     | '/api/chat'
+    | '/insights/$slug'
+    | '/insights/'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
@@ -242,7 +264,7 @@ export interface RootRouteChildren {
   HealthcareAiRoute: typeof HealthcareAiRoute
   HealthcareAutomationRoute: typeof HealthcareAutomationRoute
   IndustriesRoute: typeof IndustriesRoute
-  InsightsRoute: typeof InsightsRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   RcmRoute: typeof RcmRoute
   RcmServicesRoute: typeof RcmServicesRoute
@@ -366,6 +388,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/': {
+      id: '/insights/'
+      path: '/'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -375,6 +411,20 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface InsightsRouteChildren {
+  InsightsSlugRoute: typeof InsightsSlugRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsSlugRoute: InsightsSlugRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -386,7 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   HealthcareAiRoute: HealthcareAiRoute,
   HealthcareAutomationRoute: HealthcareAutomationRoute,
   IndustriesRoute: IndustriesRoute,
-  InsightsRoute: InsightsRoute,
+  InsightsRoute: InsightsRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   RcmRoute: RcmRoute,
   RcmServicesRoute: RcmServicesRoute,

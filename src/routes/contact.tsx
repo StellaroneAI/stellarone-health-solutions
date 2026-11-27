@@ -11,8 +11,11 @@ import { FORM_PRIVACY_NOTICE } from "@/content/site";
 import { submitLead, type LeadInput } from "@/lib/leads";
 import { pageHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { DiscoveryBooking } from "@/components/site/DiscoveryBooking";
+import { z } from "zod";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: z.object({ assessment: z.string().max(1000).optional() }),
   head: () =>
     pageHead({
       title: "Contact StellarOne Health",
@@ -149,6 +152,7 @@ const selectClass =
   "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50";
 
 function ContactPage() {
+  const { assessment } = Route.useSearch();
   const [inquiryPath, setInquiryPath] = useState<"rcm" | "ai">("rcm");
   const [values, setValues] = useState<LeadInput>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
@@ -156,6 +160,9 @@ function ContactPage() {
   const successRef = React.useRef<HTMLDivElement>(null);
   const [formError, setFormError] = useState("");
   React.useEffect(() => { if (status === "success") successRef.current?.focus(); }, [status]);
+  React.useEffect(() => {
+    if (assessment) setValues((previous) => ({ ...previous, serviceInterest: "Denial Management", message: assessment }));
+  }, [assessment]);
 
   const set = (field: keyof LeadInput) => (value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -200,6 +207,7 @@ function ContactPage() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-start">
           <div className="space-y-6">
+            <DiscoveryBooking />
             <SectionHeading
               eyebrow="What happens next"
               title="A scoped conversation, not a sales sequence"

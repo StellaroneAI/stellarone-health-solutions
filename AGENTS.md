@@ -18,3 +18,7 @@
 - Lead capture goes through the `LeadSink` abstraction in `src/lib/leads.ts`; the active sink stores enquiries in Lovable Cloud via server functions in `src/lib/enquiries.functions.ts` (tables are service-role only), never secrets in frontend code.
 - The enquiry chat assistant streams from `src/routes/api/chat.ts`; its knowledge prompt is built from `src/content/site.ts` so it never drifts from site claims.
 - Primary site navigation groups RCM, Healthcare Automation and Agentic AI under Solutions; EasyMed remains a separate product, with About and Insights as distinct content routes.
+- RCM scenarios use pure calculation logic with explicit visitor-supplied financial assumptions; specialty does not imply reimbursement defaults, so estimates remain transparent.
+- Insight articles live in a static content collection and render under an Insights layout with leaf metadata and source links, so listings and article content stay consistent.
+- Scheduling and system-experience sections read owner-confirmed configuration; absent configuration renders no compatibility claims and an honest email call-request fallback.
+- AI gateway failures preserve safe reasons, disable automatic retries and persist access pauses in a service-only table; owner recovery is required before fresh requests resume.

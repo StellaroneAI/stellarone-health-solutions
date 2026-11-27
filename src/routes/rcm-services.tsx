@@ -5,6 +5,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section, SectionHeading, Card } from "@/components/site/primitives";
 import { RCM_SERVICES } from "@/content/site";
 import { pageHead } from "@/lib/seo";
+import { RcmAssessment } from "@/components/site/RcmAssessment";
+import { SystemCompatibility } from "@/components/site/SystemCompatibility";
 
 export const Route = createFileRoute("/rcm-services")({
   head: () =>
@@ -64,6 +66,8 @@ function RcmServicesPage() {
         </div>
       </Section>
 
+      <SystemCompatibility />
+      <RcmAssessment />
       <CtaBand />
     </>
   );

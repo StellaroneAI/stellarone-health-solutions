@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { submitChatEnquiry } from "@/lib/enquiries.functions";
 import { cn } from "@/lib/utils";
+import { chatErrorMessage } from "@/lib/chat-errors";
 
 const MAX_USER_MESSAGES = 12;
 
@@ -18,7 +19,17 @@ export function ChatWidget() {
   const [leadState, setLeadState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const scrollRef = useRef<HTMLDivElement>(null);
   const { messages, sendMessage, status, error, stop } = useChat({
-    transport: new DefaultChatTransport({ api: "/api/chat" }),
+    transport: new DefaultChatTransport({
+      api: "/api/chat",
+      fetch: async (url, options) => {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+          const body: unknown = await response.json().catch(() => null);
+          throw new Error(chatErrorMessage(body));
+        }
+        return response;
+      },
+    }),
   });
 
   useEffect(() => {
@@ -66,14 +77,14 @@ export function ChatWidget() {
   return (
     <>
       {!open ? (
-        <button
+        <Button
           type="button"
           onClick={() => setOpen(true)}
           className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition hover:bg-navy/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:bottom-6 sm:right-6"
         >
           <MessageSquare className="h-4 w-4 text-teal" aria-hidden="true" />
           Talk to StellarOne
-        </button>
+        </Button>
       ) : null}
 
       {open ? (
@@ -89,9 +100,9 @@ export function ChatWidget() {
                 <p className="text-[11px] text-primary-foreground/70">Business enquiries · AI-assisted</p>
               </div>
             </div>
-            <button type="button" onClick={() => setOpen(false)} aria-label="Close chat" className="rounded p-1 hover:bg-primary-foreground/10">
+            <Button type="button" variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Close chat" className="shrink-0 hover:bg-primary-foreground/10">
               <X className="h-5 w-5" />
-            </button>
+            </Button>
           </header>
 
           <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
@@ -106,6 +117,8 @@ export function ChatWidget() {
               ) : (
                 <div key={m.id} className="prose prose-sm max-w-none text-sm text-foreground">
                   <ReactMarkdown>{textOf(m)}</ReactMarkdown>
+                  {!textOf(m) && busy && m.id === messages.at(-1)?.id ? <p className="flex items-center gap-2 text-xs text-muted-foreground"><Loader2 className="h-3 w-3 animate-spin" /> Preparing a response…</p> : null}
+                  {!textOf(m) && !busy && !error ? <p className="text-xs text-muted-foreground">No answer was returned. You can send your enquiry to our team.</p> : null}
                 </div>
               ),
             )}
@@ -114,7 +127,7 @@ export function ChatWidget() {
             ) : null}
             {error ? (
               <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/5 p-2 text-xs text-destructive">
-                The assistant is unavailable right now. Please use the contact form or tap "Send to our team".
+                {chatErrorMessage(error.message)}
               </p>
             ) : null}
             {limitReached ? (
@@ -148,9 +161,9 @@ export function ChatWidget() {
 
           <div className="border-t border-border p-3">
             {!showLead && !limitReached ? (
-              <button type="button" onClick={() => setShowLead(true)} className="mb-2 text-xs font-medium text-navy underline-offset-4 hover:underline">
+              <Button type="button" variant="link" onClick={() => setShowLead(true)} className="mb-2 h-auto p-0 text-xs font-medium text-navy underline-offset-4 hover:underline">
                 Send to our team →
-              </button>
+              </Button>
             ) : null}
             <form onSubmit={onSend} className="flex items-center gap-2">
               <Input

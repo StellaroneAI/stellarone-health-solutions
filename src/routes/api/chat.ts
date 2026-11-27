@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { convertToModelMessages, type UIMessage } from "ai";
+import { parseChatMessages } from "@/lib/chat-request";
 
 const MAX_MESSAGES = 30;
 const MAX_CHARS = 2000;
@@ -9,12 +10,11 @@ export const Route = createFileRoute("/api/chat")({
     handlers: {
       POST: async ({ request }) => {
         const apiKey = process.env["LOVABLE_API_KEY"];
-        if (!apiKey) return Response.json({ error: "Assistant is not configured." }, { status: 500 });
+        if (!apiKey) return Response.json({ error: "Assistant is not configured on this deployment. Please contact StellarOne directly while the site owner restores chat access." }, { status: 503 });
 
         let messages: UIMessage[];
         try {
-          const body = (await request.json()) as { messages?: UIMessage[] };
-          messages = Array.isArray(body.messages) ? body.messages : [];
+          messages = parseChatMessages(await request.json());
         } catch {
           return Response.json({ error: "Invalid request." }, { status: 400 });
         }
@@ -28,6 +28,13 @@ export const Route = createFileRoute("/api/chat")({
 
         const { createResponsesCall } = await import("@/server/ai/responses");
         const { ASSISTANT_INSTRUCTIONS } = await import("@/server/ai/assistant-prompt");
+        const { getAiAccessPause } = await import("@/server/ai/access-state");
+        try {
+          const pause = await getAiAccessPause();
+          if (pause) return Response.json({ error: pause.message }, { status: pause.status });
+        } catch {
+          return Response.json({ error: "Unable to check assistant availability. Please send your enquiry to our team." }, { status: 503 });
+        }
         const modelMessages = await convertToModelMessages(messages);
         return createResponsesCall(
           request,

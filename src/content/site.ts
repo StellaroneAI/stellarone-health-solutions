@@ -229,3 +229,7 @@ export const MEDICAL_DISCLAIMER =
 
 export const FORM_PRIVACY_NOTICE =
   "Please do not submit patient medical information or other sensitive health information through this form.";
+
+// Only publish an owner-confirmed public booking URL and evidenced system support.
+export const DISCOVERY_BOOKING_URL: string | null = null;
+export const VERIFIED_SYSTEMS: string[] = [];
